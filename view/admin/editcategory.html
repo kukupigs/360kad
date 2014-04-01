@@ -38,10 +38,18 @@
             <td class="altbg1"><b>分类名称:</b><br><span class="smalltxt">使用合适的名称作为分类名</span></td>
             <td class="altbg2" colspan="2"><input name="name"  type="text" value="{$category['name']}"></td>
         </tr>
-<!--        <tr>
-            <td class="altbg1"><b>分类目录:</b><br><span class="smalltxt">在问题生成纯静态的时候需要用到，留空则系统自动取分类的拼音作为目录</span></td>
-            <td class="altbg2" colspan="2"><input name="dir"  type="text" value="{$category['dir']}"></td>
-        </tr>-->
+        <tr>
+            <td class="altbg1"><b>分类广告1:</b><br><span class="smalltxt">分类相关广告信息,可以是html可以是js调用，问题查看页显示</span></td>
+            <td class="altbg2" colspan="2"><textarea name="ad1" rows="5" cols="100">{$category['ad1']}</textarea></td>
+        </tr>
+        <tr>
+            <td class="altbg1"><b>分类广告2:</b><br><span class="smalltxt">分类相关广告信息,可以是html可以是js调用，问题查看页显示</span></td>
+            <td class="altbg2" colspan="2"><textarea name="ad2" rows="5" cols="100">{$category['ad2']}</textarea></td>
+        </tr>
+        <tr>
+            <td class="altbg1"><b>分类广告3:</b><br><span class="smalltxt">分类相关广告信息,可以是html可以是js调用，问题查看页显示</span></td>
+            <td class="altbg2" colspan="2"><textarea name="ad3" rows="5" cols="100">{$category['ad3']}</textarea></td>
+        </tr>
     </table>
     <center><input type="submit" class="button" name="submit" value="提 交"></center>
 </form>

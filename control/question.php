@@ -138,6 +138,8 @@ class questioncontrol extends base {
         $solvelist = $_ENV['question']->list_by_cfield_cvalue_status('cid', $question['cid'], 2);
         $nosolvelist = $_ENV['question']->list_by_cfield_cvalue_status('cid', $question['cid'], 1);
         $navlist = $_ENV['category']->get_navigation($question['cid'], true);
+        $curcategory = $this->category[$question['cid']]; //获取问题分类信息
+        print_r($curcategory);
         $expertlist = $_ENV['expert']->get_by_cid($question['cid']);
         $typearray = array('1' => 'nosolve', '2' => 'solve', '4' => 'nosolve', '6' => 'solve', '9' => 'close');
         $typedescarray = array('1' => '待解决', '2' => '已解决', '4' => '高悬赏', '6' => '已推荐', '9' => '已关闭');
@@ -273,7 +275,6 @@ class questioncontrol extends base {
         $question = $_ENV['question']->get($qid);
         if (!$question)
             $this->message("问题不存在或已被删除!", "STOP");
-        $navlist = $_ENV['category']->get_navigation($question['cid'], true);
         if (isset($this->post['submit'])) {
             $content = $this->post['content'];
             //检查审核和内容外部URL过滤
@@ -326,7 +327,6 @@ class questioncontrol extends base {
         $answer = $_ENV['answer']->get($aid);
         (!$answer) && $this->message("回答不存在或已被删除！", "STOP");
         $question = $_ENV['question']->get($answer['qid']);
-        $navlist = $_ENV['category']->get_navigation($question['cid'], true);
         if (isset($this->post['submit'])) {
             $content = $this->post['content'];
             $viewurl = urlmap('question/view/' . $question['id'], 2);

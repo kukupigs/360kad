@@ -14,10 +14,6 @@
             <div class="title pd40">
                 <span class="ico ico-nosolve"></span>
                 <h1>{$question['title']} </h1>
-                <!--                <div class="same-q-mod">
-                                    <input type="button" class="button_attention" value="关注" />
-                                </div>-->
-
             </div>
             <div class="tags">
                 <!--{loop $taglist $tag}-->
@@ -180,6 +176,17 @@
                 <li><span class="answer-number">{$nosolve['answers']}个回答</span><a title="{$nosolve['title']}" target="_blank" href="{url question/view/$nosolve['id']}">{$nosolve['title']}</a></li>
                 <!--{/loop}-->
             </ul>
+        </div>
+        <!--{/if}-->
+        <!--{if $curcategory['ad1']}-->
+        <div class="module mt10">
+            <div class="title">关注此问题的人还关注了</div>
+            {$curcategory['ad1']}
+        </div>
+        <!--{/if}-->
+        <!--{if $curcategory['ad2']}-->
+        <div class="module mt10">
+            {$curcategory['ad2']}
         </div>
         <!--{/if}-->
         <!--广告位4-->

@@ -58,6 +58,9 @@ class admin_categorycontrol extends base {
             $category1 = $this->post['category1'];
             $category2 = $this->post['category2'];
             $category3 = $this->post['category3'];
+            $ad1 = $this->post['ad1'];
+            $ad2 = $this->post['ad2'];
+            $ad3 = $this->post['ad3'];
             if ($category3) {
                 $cid = $category3;
             } else if ($category2) {
@@ -65,21 +68,20 @@ class admin_categorycontrol extends base {
             } else if ($category1) {
                 $cid = $category1;
             }
-            $_ENV['category']->update_by_id($id, $name, $categorydir, $cid);
+            $_ENV['category']->update_by_id($id, $name, $categorydir, $cid, $ad1, $ad2, $ad3);
             cleardir(TIPASK_ROOT . '/data/cache'); //清除缓存文件
-            $this->post['cid'] ? $this->onview($this->post['cid']) : $this->ondefault();
-        } else {
-            $category = $this->category[$id];
-            $item = $category;
-            $selectedarray = array();
-            for ($grade = $category['grade']; $grade > 1; $grade--) {
-                $selectedarray[] = $item['pid'];
-                $item = $this->category[$item['pid']];
-            }
-            list($category1, $category2, $category3) = array_reverse($selectedarray);
-            $categoryjs = $_ENV['category']->get_js();
-            include template('editcategory', 'admin');
+            $message = "保存成功!";
         }
+        $category = $_ENV['category']->get($id);
+        $item = $category;
+        $selectedarray = array();
+        for ($grade = $category['grade']; $grade > 1; $grade--) {
+            $selectedarray[] = $item['pid'];
+            $item = $this->category[$item['pid']];
+        }
+        list($category1, $category2, $category3) = array_reverse($selectedarray);
+        $categoryjs = $_ENV['category']->get_js();
+        include template('editcategory', 'admin');
     }
 
     //后台分类管理查看一个分类

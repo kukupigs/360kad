@@ -162,15 +162,14 @@ class categorymodel {
 
     /* 后台管理编辑分类 */
 
-    function update_by_id($id, $name, $categorydir, $pid) {
-        $grade = (0 == $pid) ? 1 : $this->base->category[$pid]['grade'] + 1;
-        $this->db->query("UPDATE `" . DB_TABLEPRE . "category` SET  `pid`=$pid ,`grade`=$grade , `name`='$name', `dir`='$categorydir' WHERE `id`=$id");
+    function update_by_id($id, $name, $categorydir, $pid, $ad1 = '', $ad2 = '', $ad3 = '') {
+        $grade = (0 == $pid) ? 1 : $this->base->category[$pid]['grade'] + 1;  
+        $this->db->query("UPDATE `" . DB_TABLEPRE . "category` SET  `pid`=$pid ,`grade`=$grade , `name`='$name', `dir`='$categorydir',ad1='$ad1',ad2='$ad2',ad3='$ad3' WHERE `id`=$id");
     }
 
     /* 后台管理删除分类 */
-
     function remove($cids) {
-        //$this->db->query("DELETE FROM `".DB_TABLEPRE."answer` WHERE `qid` IN  (SELECT id FROM `".DB_TABLEPRE."question` WHERE `cid` IN ($cid))");
+        $this->db->query("DELETE FROM `".DB_TABLEPRE."answer` WHERE `qid` IN  (SELECT id FROM `".DB_TABLEPRE."question` WHERE `cid` IN ($cid))");
         $this->db->query("DELETE FROM `" . DB_TABLEPRE . "category` WHERE `id` IN  ($cids)");
         $this->db->query("DELETE FROM `" . DB_TABLEPRE . "question` WHERE `cid` IN ($cids)");
     }
