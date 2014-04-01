@@ -1,0 +1,28 @@
+<!--{template header}-->
+<div class="wrapper mt10 clearfix">
+    <!--{template user_menu}-->
+    <div class="user-content">
+        <div class="my-answerbox">
+            <div class="title">我的关注</div>
+            <ul class="q-tabmod">
+                <!--{loop $questionlist $question}-->
+                <li>
+                    <h3>
+                        <!--{if $question['price'] > 0}-->
+                        <span class="gold"><img src="{SITE_URL}css/default/gold.gif" />$question['price']</span>
+                        <!--{/if}-->
+                        <a href="{url question/view/$question['id']}" target="_blank" title="{$question['title']}">{eval echo cutstr($question['title'],60)}</a>
+                        <a title="{$question['category_name']}" href="{url category/view/$question['cid']}" class="type" target="_blank">[{$question['category_name']}]</a>
+                    </h3>
+                    <div class="related">
+                        <div class="pv"><em>{$question['views']}</em>次浏览</div>
+                        <div class="answer-number"><span><em>{$question['answers']}</em>条回答</span></div>
+                    </div>
+                </li>
+                <!--{/loop}-->
+            </ul>
+            <div class="pages">{$departstr}</div>
+        </div>
+    </div>
+</div>
+<!--{template footer}-->
