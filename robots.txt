@@ -1,10 +1,9 @@
 #
-# robots.txt for TIPASK 2.0
+# robots.txt for TIPASK 2.5
 #
 #
 
 User-agent: *
 
-Disallow: /install/
-Disallow: /js/
-Disallow: /data/
+Disallow: /
+
