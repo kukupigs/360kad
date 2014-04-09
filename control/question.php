@@ -30,6 +30,9 @@ class questioncontrol extends base {
             $hidanswer = intval($this->post['hidanswer']) ? 1 : 0;
             $price = intval($this->post['givescore']);
             $askfromuid = $this->post['askfromuid'];
+            $gender = intval($this->post['gender']);
+            $age = intval($this->post['age']);
+            $istreat = intval($this->post['istreat']);
             //检查魅力值
             //if($this->user['credit3']<$this->user)
             $this->setting['code_ask'] && $this->checkcode(); //检查验证码
@@ -60,7 +63,7 @@ class questioncontrol extends base {
             ($this->user['questionlimits'] && ($_ENV['userlog']->rownum_by_time('ask') >= $this->user['questionlimits'])) &&
                     $this->message("你已超过每小时最大提问数" . $this->user['questionlimits'] . ',请稍后再试！', 'BACK');
 
-            $qid = $_ENV['question']->add($title, $description, $hidanswer, $price, $cid, $cid1, $cid2, $cid3, $status);
+            $qid = $_ENV['question']->add($title, $description, $hidanswer, $price, $cid, $cid1, $cid2, $cid3, $status,$gender,$age,$istreat);
 
             //增加用户积分，扣除用户悬赏的财富
             if ($this->user['uid']) {

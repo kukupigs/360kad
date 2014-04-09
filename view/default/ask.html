@@ -41,9 +41,6 @@
                         <span>是否曾经检查或治疗</span>&nbsp;&nbsp;<select name='istreat'><option value='1'>是</option><option value='0'>否</option></select>&nbsp;&nbsp;
                 </div>
                 <div class="ask-input-bar clearfix">
-                    <a href='#' onclick="uploadimage();">上传病例/检查单/图片</a>
-                </div>
-                <div class="ask-input-bar clearfix">
                     <!--{if $setting['code_ask']}-->
                     <h2>验证码</h2>
                     <input type="text" class="code-input" id="code" name="code" onblur="check_code()">&nbsp;<span class="verifycode"><img src="{url user/code}" onclick="javascript:updatecode();" id="verifycode"></span><a href="javascript:updatecode();" class="changecode">&nbsp;换一个</a>
@@ -170,7 +167,6 @@
         }
         {/if}   
     }
-    function uploadimage(){
-    }
+
 </script>
 <!--{template footer}-->
