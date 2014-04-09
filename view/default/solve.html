@@ -256,7 +256,7 @@
         <!--{eval $topic = $topiclist[0];}-->
         <div class="modbox mt10">
             <div class="title">{eval echo cutstr($topic['title'],14,'');}</div>
-            <div style="margin-left: 10px;"><img width="230" height="170" src="{SITE_URL}{$topic['image']}"/></div>
+            <!--<div style="margin-left: 10px;"><img width="230" height="170" src="{SITE_URL}{$topic['image']}"/></div>-->
             <ul class="list">
                 <!--{loop $topic['questionlist'] $question}-->
                 <li><a title="{$question['title']}" target="_blank" href="{url question/view/$question['qid']}">{eval echo cutstr($question['title'],30,'');}</a></li>

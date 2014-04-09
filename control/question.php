@@ -142,7 +142,6 @@ class questioncontrol extends base {
         $nosolvelist = $_ENV['question']->list_by_cfield_cvalue_status('cid', $question['cid'], 1);
         $navlist = $_ENV['category']->get_navigation($question['cid'], true);
         $curcategory = $this->category[$question['cid']]; //获取问题分类信息
-        print_r($curcategory);
         $expertlist = $_ENV['expert']->get_by_cid($question['cid']);
         $typearray = array('1' => 'nosolve', '2' => 'solve', '4' => 'nosolve', '6' => 'solve', '9' => 'close');
         $typedescarray = array('1' => '待解决', '2' => '已解决', '4' => '高悬赏', '6' => '已推荐', '9' => '已关闭');
