@@ -42,8 +42,20 @@
                 </div>
                 <div class="timeright"><span><a href="#">检举</a></span><span class="span-line">|</span><span><a href="{url favorite/add/$question['id']}">收藏</a></span><span class="span-line">|</span>{$question['format_time']}</div>                    
             </div>
-            <div class="description clearfix">{$question['description']}</div> 
-            <div class="mainbox mt10">
+            <div class="description clearfix">
+                {$question['description']}
+                <!--{if $question['istreat'] && $question['treatdesc']}-->
+                <p>曾今检查/治疗结果:<br />{$question['treatdesc']}</p>
+                <!--{/if}-->
+                <!--{if $question['images']}-->
+                <!--{eval $images = json_decode($question['images']);}-->
+                <p>
+                    <!--{loop $images $image}-->
+                    <img src='{SITE_URL}{$image}' />
+                    <!--{/loop}-->
+                </p>
+                <!--{/if}-->
+            </div>             <div class="mainbox mt10">
                 <ul>
                     <!--{loop $supplylist $supply}-->
                     <li><span class="time">问题补充 : {$supply['format_time']}</span>{$supply['content']}</li>

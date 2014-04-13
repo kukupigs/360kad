@@ -14,6 +14,7 @@ class questioncontrol extends base {
         $this->load("expert");
         $this->load("tag");
         $this->load("userlog");
+        $this->load("attach");
     }
 
     /* 提交问题 */
@@ -33,6 +34,11 @@ class questioncontrol extends base {
             $gender = intval($this->post['gender']);
             $age = intval($this->post['age']);
             $istreat = intval($this->post['istreat']);
+            $treatdesc = $this->post['treatdesc'];
+            $images = $this->post['images'];
+            if($images){
+                $images = json_encode($images);
+            }
             //检查魅力值
             //if($this->user['credit3']<$this->user)
             $this->setting['code_ask'] && $this->checkcode(); //检查验证码
@@ -63,7 +69,7 @@ class questioncontrol extends base {
             ($this->user['questionlimits'] && ($_ENV['userlog']->rownum_by_time('ask') >= $this->user['questionlimits'])) &&
                     $this->message("你已超过每小时最大提问数" . $this->user['questionlimits'] . ',请稍后再试！', 'BACK');
 
-            $qid = $_ENV['question']->add($title, $description, $hidanswer, $price, $cid, $cid1, $cid2, $cid3, $status,$gender,$age,$istreat);
+            $qid = $_ENV['question']->add($title, $description, $hidanswer, $price, $cid, $cid1, $cid2, $cid3, $status, $gender, $age, $istreat, $treatdesc,$images);
 
             //增加用户积分，扣除用户悬赏的财富
             if ($this->user['uid']) {
@@ -497,6 +503,23 @@ class questioncontrol extends base {
         $viewurl = urlmap('question/view/' . $qid, 2);
         $_ENV['answer']->change_to_verify($aid);
         $this->message("回答审核完成!", $viewurl);
+    }
+
+    function onajaxupload() {
+        //上传配置
+        $config = array(
+            "uploadPath" => "data/attach/", //保存路径
+        );
+        if (isset($_FILES["userimage"])) {
+            $clientFile = $_FILES["userimage"];
+            $targetfile = $config['uploadPath'] . gmdate('ym', $this->time) . '/' . random(8) . strrchr($clientFile["name"], '.');
+            $result = $_ENV['attach']->movetmpfile($clientFile, $targetfile);
+            if($result){
+                echo $targetfile;
+            }else{
+                echo 'error';
+            }
+        }
     }
 
 }

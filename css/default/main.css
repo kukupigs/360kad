@@ -350,7 +350,13 @@ th{font-style: normal;font-weight: 400;}
 .inputbox .qtitle {height:20px;background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #D6D6D6;border-radius: 2px 2px 2px 2px;box-shadow: 1px 1px 1px #F8F8F8 inset;float: left;font-size: 16px;height: 22px;line-height: 22px;outline: 0 none;overflow: hidden;padding: 12px;resize: none;width: 644px;}
 .inputbox .adopt_text {height:20px;background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #D6D6D6;border-radius: 2px 2px 2px 2px;box-shadow: 1px 1px 1px #F8F8F8 inset;float: left;font-size: 16px;height: 22px;line-height: 22px;outline: 0 none;overflow: hidden;padding: 12px;resize: none;width:430px;}
 .inputbox .qtitle:hover,.inputbox .adopt_text  {border: 2px solid #50B30E;padding:11px;}
+
+.inputbox .treatdesc {height:50px;background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #D6D6D6;border-radius: 2px 2px 2px 2px;box-shadow: 1px 1px 1px #F8F8F8 inset;float: left;outline: 0 none;overflow: hidden;padding: 12px;resize: none;width: 644px;}
+.inputbox .treatdesc:hover{border: 2px solid #50B30E;padding:11px;}
+
 .inputbox h3{margin-top:20px;}
+.inputbox .smallimage{float: left;height: 135px;line-height: 22px;margin-right: 19px;overflow: hidden;text-align: center;width: 106px;}
+.inputbox .smallimage img{border: 1px solid #E1E1E1;height: 100px;overflow: hidden;padding: 2px;width: 100px;}
 .ask-input-bar{padding-top: 10px;padding-bottom: 10px;font-size: 14px;}
 .ask-input-bar h2{float: left;font-size: 12px;font-weight: normal;height: 28px;margin-top: 5px;text-align: right;}
 .ask-input-bar a,.ask-input-bar span{font-size: 12px;}
@@ -358,6 +364,8 @@ th{font-style: normal;font-weight: 400;}
 .ask-input-bar .bar_l{float: left;}
 .ask-input-bar .bar_r{float: right;}
 .ask-input-bar .bar_r span{margin-left: 10px;}
+
+
 
 .textmod{ float:left; padding:2px 5px 2px 22px; width:438px; height:20px; line-height:20px; border:1px solid #7caad2; background-position:-211px -572px; background-color:#fff;}
 .textmod .text{ float:left; width:300px; height:20px; line-height:20px; border:0 none; outline:none;}

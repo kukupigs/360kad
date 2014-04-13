@@ -6,3 +6,7 @@ ALTER TABLE `ask_question` ADD `gender` TINYINT( 1 ) NOT NULL;
 ALTER TABLE `ask_question` ADD `age` INT( 4 ) NOT NULL DEFAULT '0';
 ALTER TABLE `ask_question` ADD `istreat` TINYINT( 1 ) NOT NULL DEFAULT '0';
 
+--问题表加入诊断描述--
+ALTER TABLE `ask_question` ADD `treatdesc` TEXT NULL;
+ALTER TABLE `ask_question` ADD `images` TEXT NULL 
+

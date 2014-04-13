@@ -215,7 +215,7 @@ class questionmodel {
 
     /* 插入问题到question表 */
 
-    function add($title, $description, $hidanswer, $price, $cid, $cid1 = 0, $cid2 = 0, $cid3 = 0, $status = 0,$gender=1,$age=0,$istreat=0) {
+    function add($title, $description, $hidanswer, $price, $cid, $cid1 = 0, $cid2 = 0, $cid3 = 0, $status = 0,$gender=1,$age=0,$istreat=0,$treatdesc='',$images='') {
         $overdue_days = intval($this->base->setting['overdue_days']);
         $creattime = $this->base->time;
         $endtime = $this->base->time + $overdue_days * 86400;
@@ -223,7 +223,7 @@ class questionmodel {
         $username = $uid ? $this->base->user['username'] : $this->base->user['ip'];
         (!strip_tags($description, '<img>')) && $description = '';
         /* 分词索引 */
-        $this->db->query("INSERT INTO " . DB_TABLEPRE . "question SET cid='$cid',cid1='$cid1',cid2='$cid2',cid3='$cid3',authorid='$uid',author='$username',title='$title',description='$description',price='$price',time='$creattime',endtime='$endtime',hidden='$hidanswer',status='$status',gender=$gender,age=$age,istreat=$istreat,ip='{$this->base->ip}'");
+        $this->db->query("INSERT INTO " . DB_TABLEPRE . "question SET cid='$cid',cid1='$cid1',cid2='$cid2',cid3='$cid3',authorid='$uid',author='$username',title='$title',description='$description',price='$price',time='$creattime',endtime='$endtime',hidden='$hidanswer',status='$status',gender=$gender,age=$age,istreat=$istreat,treatdesc='$treatdesc',images='$images',ip='{$this->base->ip}'");
         $qid = $this->db->insert_id();
         if ($this->base->setting['xunsearch_open'] && $qid) {
             $question = array();
