@@ -135,9 +135,13 @@ class questionmodel {
     }
 
     //通过标签获取同类问题
-    function list_by_tag($name, $status = '1,2,6', $start = 0, $limit = 20) {
+    function list_by_tag($namelist, $status = '1,2,6', $start = 0, $limit = 20) {
         $questionlist = array();
-        $query = $this->db->query("SELECT * FROM `" . DB_TABLEPRE . "question` AS q," . DB_TABLEPRE . "question_tag AS t WHERE q.id=t.qid AND t.name='$name' AND q.status IN ($status) ORDER BY q.answers DESC,q.time DESC LIMIT $start,$limit");
+        $namestr = "'$namelist'";
+        if(is_array($namelist)){
+            $namestr = "'".implode("',",$namelist)."'";
+        }
+        $query = $this->db->query("SELECT * FROM `" . DB_TABLEPRE . "question` AS q," . DB_TABLEPRE . "question_tag AS t WHERE q.id=t.qid AND t.name IN ($namestr) AND q.status IN ($status) ORDER BY q.answers DESC,q.time DESC LIMIT $start,$limit");
         while ($question = $this->db->fetch_array($query)) {
             $question['category_name'] = $this->base->category[$question['cid']]['name'];
             $question['format_time'] = tdate($question['time']);
@@ -193,6 +197,7 @@ class questionmodel {
         }
         return $questionlist;
     }
+   
 
     /* 我的所有提问，用户中心 */
 

@@ -9,7 +9,7 @@
         <title><!--{if $navtitle}-->{$navtitle} - <!--{/if}-->{$setting['site_name']}</title>
         <!--{/if}-->
         <!--{if isset($seo_description)}-->
-        <meta name="description" content="{$seo_description}" />
+        <meta name="description" content="{eval echo cutstr($seo_description,140,'')}" />
         <!--{else}-->
         <meta name="description" content="{$setting['site_name']}" />
         <!--{/if}-->

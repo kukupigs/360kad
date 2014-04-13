@@ -36,7 +36,7 @@ class questioncontrol extends base {
             $istreat = intval($this->post['istreat']);
             $treatdesc = $this->post['treatdesc'];
             $images = $this->post['images'];
-            if($images){
+            if ($images) {
                 $images = json_encode($images);
             }
             //检查魅力值
@@ -69,7 +69,7 @@ class questioncontrol extends base {
             ($this->user['questionlimits'] && ($_ENV['userlog']->rownum_by_time('ask') >= $this->user['questionlimits'])) &&
                     $this->message("你已超过每小时最大提问数" . $this->user['questionlimits'] . ',请稍后再试！', 'BACK');
 
-            $qid = $_ENV['question']->add($title, $description, $hidanswer, $price, $cid, $cid1, $cid2, $cid3, $status, $gender, $age, $istreat, $treatdesc,$images);
+            $qid = $_ENV['question']->add($title, $description, $hidanswer, $price, $cid, $cid1, $cid2, $cid3, $status, $gender, $age, $istreat, $treatdesc, $images);
 
             //增加用户积分，扣除用户悬赏的财富
             if ($this->user['uid']) {
@@ -144,7 +144,7 @@ class questioncontrol extends base {
         $departstr = page($rownum, $pagesize, $page, "question/view/$qid/" . $this->get[3]);
         $answerlist = $answerlistarray[0];
         $already = $answerlistarray[1];
-        $solvelist = $_ENV['question']->list_by_cfield_cvalue_status('cid', $question['cid'], 2);
+        //$solvelist = $_ENV['question']->list_by_cfield_cvalue_status('cid', $question['cid'], 2);
         $nosolvelist = $_ENV['question']->list_by_cfield_cvalue_status('cid', $question['cid'], 1);
         $navlist = $_ENV['category']->get_navigation($question['cid'], true);
         $curcategory = $this->category[$question['cid']]; //获取问题分类信息
@@ -156,6 +156,11 @@ class questioncontrol extends base {
         ('solve' == $dirction) && $bestanswer = $_ENV['answer']->get_best($qid);
         $categoryjs = $_ENV['category']->get_js();
         $taglist = $_ENV['tag']->get_by_qid($qid);
+        $tagnamelist = array();
+        foreach($tagnamelist as $tag){
+            $tagnamelist[] = $tag['name'];
+        }
+        $solvelist = $_ENV['question']->list_by_tag($tagnamelist, '2,6', 0, 10);
         $expertlist = $_ENV['expert']->get_by_cid($question['cid']);
         /* SEO */
         $curnavname = $navlist[count($navlist) - 1]['name'];
@@ -174,7 +179,7 @@ class questioncontrol extends base {
             $seo_description = str_replace("{wtbt}", $question['title'], $seo_description);
             $seo_description = str_replace("{wtzt}", $typedescarray[$question['status']], $seo_description);
             $seo_description = str_replace("{flmc}", $curnavname, $seo_description);
-            $seo_description = str_replace("{wtms}", $question['description'], $seo_description);
+            $seo_description = str_replace("{wtms}", strip_tags($question['description']), $seo_description);
             $seo_description = str_replace("{zjda}", strip_tags($bestanswer['content']), $seo_description);
         }
         if ($this->setting['seo_question_keywords']) {
@@ -183,7 +188,7 @@ class questioncontrol extends base {
             $seo_keywords = str_replace("{wtzt}", $typedescarray[$question['status']], $seo_keywords);
             $seo_keywords = str_replace("{flmc}", $curnavname, $seo_keywords);
             $seo_keywords = str_replace("{wtbq}", implode(",", $taglist), $seo_keywords);
-            $seo_description = str_replace("{description}", $question['description'], $seo_keywords);
+            $seo_keywords = str_replace("{description}", strip_tags($question['description']), $seo_keywords);
             $seo_keywords = str_replace("{zjda}", strip_tags($bestanswer['content']), $seo_keywords);
         }
         include template($dirction);
@@ -514,9 +519,9 @@ class questioncontrol extends base {
             $clientFile = $_FILES["userimage"];
             $targetfile = $config['uploadPath'] . gmdate('ym', $this->time) . '/' . random(8) . strrchr($clientFile["name"], '.');
             $result = $_ENV['attach']->movetmpfile($clientFile, $targetfile);
-            if($result){
+            if ($result) {
                 echo $targetfile;
-            }else{
+            } else {
                 echo 'error';
             }
         }
