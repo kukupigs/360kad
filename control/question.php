@@ -156,11 +156,7 @@ class questioncontrol extends base {
         ('solve' == $dirction) && $bestanswer = $_ENV['answer']->get_best($qid);
         $categoryjs = $_ENV['category']->get_js();
         $taglist = $_ENV['tag']->get_by_qid($qid);
-        $tagnamelist = array();
-        foreach($tagnamelist as $tag){
-            $tagnamelist[] = $tag['name'];
-        }
-        $solvelist = $_ENV['question']->list_by_tag($tagnamelist, '2,6', 0, 10);
+        $solvelist = $_ENV['question']->list_by_tag($taglist, '2,6', 0, 10);
         $expertlist = $_ENV['expert']->get_by_cid($question['cid']);
         /* SEO */
         $curnavname = $navlist[count($navlist) - 1]['name'];
