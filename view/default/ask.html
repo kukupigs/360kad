@@ -31,10 +31,11 @@
                     </div>
                 </div>
                 <div class="ask-input-bar clearfix">
-                    <span>性别</span>&nbsp;&nbsp;<select name='gender'><option value='1'>男</option><option value='0'>女</option><option value="2">保密</option></select>&nbsp;&nbsp;
+                    <span>性别</span>&nbsp;&nbsp;<select name='gender'><option value='1'>男</option><option value='0'>女</option></select>&nbsp;&nbsp;
                     <span>年龄</span>&nbsp;&nbsp;
-                    <!--{eval $agelist=range(5,100);}-->
+                    <!--{eval $agelist=range(1,100);}-->
                     <select name='age'>
+                        <option value="0">1岁以下</option>
                         <!--{loop $agelist $age}-->
                         <option value='{$age}'>{$age}</option>
                         <!--{/loop}-->

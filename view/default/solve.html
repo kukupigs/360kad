@@ -35,7 +35,7 @@
                     <span class="span-line">|</span>
                     <span>性别:{if $question['gender']==1}男{elseif $question['gender']==0}女{else}未知{/if}</span>
                     <span class="span-line">|</span>
-                    <span>年龄:{$question['age']}</span>
+                    <span>年龄:{if $question['age']}{$question['age']}{else}1岁以下{/if}</span>
                     <span class="span-line">|</span><span>{if $question['istreat']}曾今接受过治疗或检查{else}未接受治疗和检查{/if}</span>
                     <span class="span-line">|</span><span>浏览{$question['views']}次</span>
                 </div>
