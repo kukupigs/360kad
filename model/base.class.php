@@ -71,7 +71,7 @@ class base {
                 break;
             case 'attentionlist'://关注问题排行榜
                 $this->load('question');
-                $cachedata = $_ENV['question']->get_hots(0, 8);
+                $cachedata = $_ENV['question']->get_hots(0,0,8);
                 break;
             case 'weekuserlist'://达人飙升榜
                 $this->load('user');

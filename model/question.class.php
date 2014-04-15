@@ -87,11 +87,14 @@ class questionmodel {
         return $questionlist;
     }
 
-    function get_hots($start, $limit) {
+    function get_hots($cid=0,$start=0,$limit=8) {
         $questionlist = array();
         $timestart = $this->base->time - 7 * 24 * 3600;
         $timeend = $this->base->time;
-        $query = $this->db->query("SELECT * FROM " . DB_TABLEPRE . "question WHERE `time`>$timestart AND `time`<$timeend  ORDER BY answers DESC,views DESC, `time` DESC LIMIT $start,$limit");
+        $sql = "SELECT * FROM " . DB_TABLEPRE . "question WHERE `time`>$timestart AND `time`<$timeend ";
+        $cid && $sql .= " AND cid=$cid ";
+        $sql .= " ORDER BY answers DESC,views DESC, `time` DESC LIMIT $start,$limit";
+        $query = $this->db->query($sql);
         while ($question = $this->db->fetch_array($query)) {
             $question['format_time'] = tdate($question['time']);
             $questionlist[] = $question;

@@ -5,7 +5,7 @@
 class categorycontrol extends base {
 
     function categorycontrol(& $get, & $post) {
-        $this->base($get,$post);
+        $this->base($get, $post);
         $this->load('category');
         $this->load('question');
     }
@@ -35,6 +35,8 @@ class categorycontrol extends base {
         $navlist = $_ENV['category']->get_navigation($cid); //获取导航
         $sublist = $_ENV['category']->list_by_cid_pid($cid, $category['pid']); //获取子分类
         $expertlist = $_ENV['expert']->get_by_cid($cid); //分类专家
+        $attentionlist = $_ENV['question']->get_hots($cid, 0, 8);
+
         /* SEO */
         if ($this->setting['seo_category_title']) {
             $seo_title = str_replace("{wzmc}", $this->setting['site_name'], $this->setting['seo_category_title']);
@@ -74,7 +76,7 @@ class categorycontrol extends base {
         $pagesize = $this->setting['list_default'];
         $startindex = ($page - 1) * $pagesize;
         $rownum = $this->db->fetch_total('topic');
-        $topiclist = $_ENV['topic']->get_list(2,$startindex, $pagesize);
+        $topiclist = $_ENV['topic']->get_list(2, $startindex, $pagesize);
         $departstr = page($rownum, $pagesize, $page, "category/recommend");
         $metakeywords = $navtitle;
         $metadescription = '精彩推荐列表';

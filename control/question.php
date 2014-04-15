@@ -145,7 +145,7 @@ class questioncontrol extends base {
         $answerlist = $answerlistarray[0];
         $already = $answerlistarray[1];
         //$solvelist = $_ENV['question']->list_by_cfield_cvalue_status('cid', $question['cid'], 2);
-        //$nosolvelist = $_ENV['question']->list_by_cfield_cvalue_status('cid', $question['cid'], 1);
+        $nosolvelist = $_ENV['question']->list_by_cfield_cvalue_status('cid', $question['cid'], 1);
         $navlist = $_ENV['category']->get_navigation($question['cid'], true);
         $curcategory = $this->category[$question['cid']]; //获取问题分类信息
         $expertlist = $_ENV['expert']->get_by_cid($question['cid']);
@@ -156,8 +156,9 @@ class questioncontrol extends base {
         ('solve' == $dirction) && $bestanswer = $_ENV['answer']->get_best($qid);
         $categoryjs = $_ENV['category']->get_js();
         $taglist = $_ENV['tag']->get_by_qid($qid);
-        $nosolvelist = $_ENV['question']->list_by_tag($taglist, '1', 0, 10);
+        //$nosolvelist = $_ENV['question']->list_by_tag($taglist, '1', 0, 10);
         $solvelist = $_ENV['question']->list_by_tag($taglist, '2,6', 0, 10);
+        $attentionlist = $_ENV['question']->get_hots($question['cid'], 0, 8);
         $expertlist = $_ENV['expert']->get_by_cid($question['cid']);
         /* SEO */
         $curnavname = $navlist[count($navlist) - 1]['name'];
