@@ -45,18 +45,22 @@ function url($var, $url = '') {
  */
 
 function urlmap($var, $direction = 1) {
-    $replaces = array(
-        'question-' => 'question/view/',
+    $url_routes = array(
+        'questions/' => 'question/view/',
         'c-' => 'category/view/',
         'l-' => 'category/list/',
         'r-' => 'category/recommend/',
         'u-' => 'user/space/',
         'us-' => 'user/scorelist/',
     );
-    (2 == $direction) && $replaces = array_flip($replaces);
-    return str_replace(array_keys($replaces), array_values($replaces), $var);
+    (2 == $direction) && $url_routes = array_flip($url_routes);
+    foreach ($url_routes as $mapkey => $route) {
+        if (false !== strpos($var, $mapkey)) {
+            return str_replace($mapkey, $route, $var);
+        }
+    }
+    return $var;
 }
-
 /**
  * random
  * @param int $length

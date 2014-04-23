@@ -32,8 +32,7 @@ class tipask {
             $querystring = substr($querystring, 0, $pos);
         }
         /* 处理简短url */
-        $pos = strpos($querystring, '-');
-        ($pos !== false) && $querystring = urlmap($querystring);
+        $querystring = urlmap($querystring);
         $andpos = strpos($querystring, "&");
         $andpos && $querystring = substr($querystring, 0, $andpos);
         $this->get = explode('/', $querystring);
