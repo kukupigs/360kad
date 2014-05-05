@@ -148,7 +148,6 @@ class questioncontrol extends base {
         $nosolvelist = $_ENV['question']->list_by_cfield_cvalue_status('cid', $question['cid'], 1);
         $navlist = $_ENV['category']->get_navigation($question['cid'], true);
         $curcategory = $this->category[$question['cid']]; //获取问题分类信息
-        $expertlist = $_ENV['expert']->get_by_cid($question['cid']);
         $typearray = array('1' => 'nosolve', '2' => 'solve', '4' => 'nosolve', '6' => 'solve', '9' => 'close');
         $typedescarray = array('1' => '待解决', '2' => '已解决', '4' => '高悬赏', '6' => '已推荐', '9' => '已关闭');
         $navtitle = $question['title'];
@@ -160,6 +159,7 @@ class questioncontrol extends base {
         $solvelist = $_ENV['question']->list_by_tag($taglist, '2,6', 0, 10);
         $attentionlist = $_ENV['question']->get_hots($question['cid'], 0, 8);
         $expertlist = $_ENV['expert']->get_by_cid($question['cid']);
+        print_r($expertlist);
         /* SEO */
         $curnavname = $navlist[count($navlist) - 1]['name'];
         if (!$bestanswer) {
