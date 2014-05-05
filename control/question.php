@@ -159,7 +159,6 @@ class questioncontrol extends base {
         $solvelist = $_ENV['question']->list_by_tag($taglist, '2,6', 0, 10);
         $attentionlist = $_ENV['question']->get_hots($question['cid'], 0, 8);
         $expertlist = $_ENV['expert']->get_by_cid($question['cid']);
-        print_r($expertlist);
         /* SEO */
         $curnavname = $navlist[count($navlist) - 1]['name'];
         if (!$bestanswer) {
@@ -252,11 +251,11 @@ class questioncontrol extends base {
     /* 采纳答案 */
 
     function onadopt() {
-        $qid = intval($this->post['qid']);
         $aid = intval($this->post['aid']);
         $comment = $this->post['content'];
-        $question = $_ENV['question']->get($qid);
         $answer = $_ENV['answer']->get($aid);
+        $qid = $answer['qid'];
+        $question = $_ENV['question']->get($qid);
         $ret = $_ENV['answer']->adopt($qid, $answer);
         if ($ret) {
             $this->load("answer_comment");
