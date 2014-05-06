@@ -262,16 +262,15 @@
         <!--{if (isset($adlist['question_view']['right1']) && trim($adlist['question_view']['right1']))}-->
         <div>{$adlist['question_view']['right1']}</div>
       <!--{/if}-->
-      
-       <!--{eval $topiclist=$this->fromcache('topiclist');}-->
+        <!--{eval $topiclist=$this->fromcache('topiclist');}-->
         <!--{if $topiclist}-->
         <!--{eval $topic = $topiclist[0];}-->
         <div class="modbox mt10">
             <div class="title">{eval echo cutstr($topic['title'],14,'');}</div>
             <!--<div style="margin-left: 10px;"><img width="230" height="170" src="{SITE_URL}{$topic['image']}"/></div>-->
             <ul class="list">
-                <!--{loop $topic['questionlist'] $question}-->
-                <li><a title="{$question['title']}" target="_blank" href="{url question/view/$question['qid']}">{eval echo cutstr($question['title'],30,'');}</a></li>
+                <!--{loop $topic['questionlist'] $tquestion}-->
+                <li><a title="{$tquestion['title']}" target="_blank" href="{url question/view/$tquestion['qid']}">{eval echo cutstr($tquestion['title'],30,'');}</a></li>
                 <!--{/loop}-->
             </ul>
         </div>
@@ -280,7 +279,7 @@
             <div class="modbox mt10">
                 <div class="title">一周热点问题</div>
                 <ul class="right-list">
-                    <!--{loop $attentionlist $index $question}-->
+                    <!--{loop $attentionlist $index $attention}-->
                     <!--{eval $index++;}-->
                     <li>
                         <!--{if $index<4}-->
@@ -288,7 +287,7 @@
                         <!--{else}-->
                         <em class="n2">{$index}</em>
                         <!--{/if}-->
-                        <a  title="{$question['title']}" target="_blank" href="{url question/view/$question['id']}">{eval echo cutstr($question['title'],40,'');}</a>
+                        <a  title="{$attention['title']}" target="_blank" href="{url question/view/$attention['id']}">{eval echo cutstr($attention['title'],40,'');}</a>
                     </li>
                     <!--{/loop}-->
                 </ul>
