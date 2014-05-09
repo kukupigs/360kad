@@ -87,7 +87,7 @@ class questionmodel {
         return $questionlist;
     }
 
-    function get_hots($cid=0,$start=0,$limit=8) {
+    function get_hots($cid = 0, $start = 0, $limit = 8) {
         $questionlist = array();
         $timestart = $this->base->time - 7 * 24 * 3600;
         $timeend = $this->base->time;
@@ -104,13 +104,17 @@ class questionmodel {
 
     /* 后台问题数目 */
 
-    function rownum_by_search($title = '', $author = '', $datestart = '', $dateend = '', $status = '',$cid=0) {
+    function rownum_by_search($title = '', $author = '', $datestart = '', $dateend = '', $status = '', $cid = 0) {
         $condition = " 1=1 ";
-        $title && ($condition .= " AND `title` like '$title%' ");
+        $title && ($condition .= " AND `title` like '%$title%' ");
         $author && ($condition .= " AND `author`='$author'");
         $datestart && ($condition .= " AND `time`>= " . strtotime($datestart));
         $dateend && ($condition .=" AND `time`<= " . strtotime($dateend));
-        $cid && ($condition .= " AND `cid`= $cid ");
+        if ($cid) {
+            $category = $this->base->category[$cid];
+            $condition .= " AND `cid" . $category['grade'] . "`= $cid ";
+        }
+        
         isset($this->statustable[$status]) && $condition.=$this->statustable[$status];
         return $this->db->fetch_total('question', $condition);
     }
@@ -119,12 +123,14 @@ class questionmodel {
 
     function list_by_search($title = '', $author = '', $datestart = '', $dateend = '', $status = '', $cid = 0, $start = 0, $limit = 10) {
         $sql = "SELECT * FROM `" . DB_TABLEPRE . "question` WHERE 1=1 ";
-        $title && ($sql .= " AND `title` like '$title%' ");
+        $title && ($sql .= " AND `title` like '%$title%' ");
         $author && ($sql .= " AND `author`='$author'");
         $datestart && ($sql .= " AND `time` >= " . strtotime($datestart));
         $dateend && ($sql .=" AND `time` <= " . strtotime($dateend));
-        $cid && ($sql .= " AND `cid`= $cid ");
-        isset($this->statustable[$status]) && $sql.=$this->statustable[$status];
+        if ($cid) {
+            $category = $this->base->category[$cid];
+            $sql .= " AND `cid" . $category['grade'] . "`= $cid ";
+        } isset($this->statustable[$status]) && $sql.=$this->statustable[$status];
         $sql.=" ORDER BY `time` DESC LIMIT $start,$limit";
         $questionlist = array();
         $query = $this->db->query($sql);
@@ -141,8 +147,8 @@ class questionmodel {
     function list_by_tag($namelist, $status = '1,2,6', $start = 0, $limit = 20) {
         $questionlist = array();
         $namestr = "'$namelist'";
-        if(is_array($namelist)){
-            $namestr = "'".implode("',",$namelist)."'";
+        if (is_array($namelist)) {
+            $namestr = "'" . implode("',", $namelist) . "'";
         }
         $query = $this->db->query("SELECT * FROM `" . DB_TABLEPRE . "question` AS q," . DB_TABLEPRE . "question_tag AS t WHERE q.id=t.qid AND t.name IN ($namestr) AND q.status IN ($status) ORDER BY q.answers DESC,q.time DESC LIMIT $start,$limit");
         while ($question = $this->db->fetch_array($query)) {
@@ -200,7 +206,6 @@ class questionmodel {
         }
         return $questionlist;
     }
-   
 
     /* 我的所有提问，用户中心 */
 
@@ -223,7 +228,7 @@ class questionmodel {
 
     /* 插入问题到question表 */
 
-    function add($title, $description, $hidanswer, $price, $cid, $cid1 = 0, $cid2 = 0, $cid3 = 0, $status = 0,$gender=1,$age=0,$istreat=0,$treatdesc='',$images='') {
+    function add($title, $description, $hidanswer, $price, $cid, $cid1 = 0, $cid2 = 0, $cid3 = 0, $status = 0, $gender = 1, $age = 0, $istreat = 0, $treatdesc = '', $images = '') {
         $overdue_days = intval($this->base->setting['overdue_days']);
         $creattime = $this->base->time;
         $endtime = $this->base->time + $overdue_days * 86400;
