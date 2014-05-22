@@ -1,0 +1,193 @@
+@charset "utf-8";
+/* CSS Document */
+/*覆盖原样式*/
+#navbox{margin: auto;text-align: left;width: 980px;}
+.main-nav, .main-nav .navlist, .main-nav .navlist li a, .main-nav .navlist li a span.s1 i, .main-nav .total {background:url(./images/lnav_box.png) no-repeat scroll 0 -80px transparent;}
+.main-nav {background-color: #3fb10e;background-repeat: no-repeat;height: 40px;line-height: 40px; overflow: hidden;width: 980px;}
+.main-nav .navlist {background-position: 0 -120px;float: left;font-size: 14px;}
+.main-nav .navlist li {float: left;font-family:Arial, Helvetica, sans-serif;margin-right: -2px; font-weight:bold;}
+.main-nav .navlist li a {background-position: 100% -256px;color: #FFFFFF;display: block;text-align: center;text-decoration: none;width: 110px;line-height:40px;height: 40px;}
+.main-nav .navlist li a span {cursor: pointer;display: block;width: 100%;}
+.main-nav .navlist .last a {background-position: 0 -223px;}
+.main-nav .navlist li.on a, .main-nav .navlist li.on:hover a, .main-nav .navlist li:hover a, .main-nav .navlist li.hover a {background-color: #099B00;background-position: 0 -40px;}
+
+
+.categorybox, .icon_count, .tab_menu li.more, .tab_box ol li .online ,.tab_box .WTlist li ,.tab_box .WTlist li b ,.Lico-W, .LnewList{  background:url(./images/ico_03.gif) no-repeat;}
+body{ margin:auto;}
+.main-nav{ margin-top:5px;}
+.js-fixed{ position:inherit;}
+.pagination li.spanhover span { background-color:#4a8cd9;}
+.categorybox .cate-item h3 { padding: 0 15px 0 0;}
+
+.categorybox .cate-item p{display: inline-block; width: 100px; height: 16px; line-height: 20px; overflow: hidden;  white-space:nowrap;  color:#b7b7b7;}
+.categorybox .cate-item p a{ margin: 0px 5px 0px 0px; color: #B7B7B7;}
+.fixed-theme .search_mod { border-bottom:none;}
+.modbox { border: 1px solid #e4e4e4;}
+.slidermod{ border-color:#e4e4e4;}
+.categorybox { background-position: 174px -50px; z-index:9;}
+.icon_count{ background-position:0px 8px;}
+.mod-best-a{ border-top:1px solid #d5d5d5;}
+.share-content{ border: none;}
+
+.fr{ float:right;}
+.pt35{ padding-top:35px;}
+.pt15{ padding-top:15px;}
+.mlr5{ margin:0px 5px;}
+.content-left{ width:670px;}
+.aside-right{ width:300px;}
+.tipcontent{ width:978px;}
+.your-answer-mod{ border-top:1px solid #E4E4E4;}
+.classifymod-list li{ width:130px;}
+.mod-answer-list{ border-top:none;}
+.mod-answer-list .bd{ padding-top:20px;}
+.cls-qa-table table th{ font-size:14px; background:#fbfbfb;}
+.cls-qa-table table .s0, .cls-qa-table table .s2{ text-align:center;}
+.cls-qa-table table .s1{ width:80px;}
+
+
+.inputbox .qtitle{ width:480px;}
+.inputbox{ padding:16px 0px 0px;}
+
+.tab_box ol{ height:216px;}
+.tab_box ol li { float: left; height: 78px; margin: 22px 0 0 0px ; padding-left:36px; overflow: hidden; width: 206px;}
+.tab_box li img { float: left; height: 70px; width: 70px;}
+.tab_box ol li strong { color: #999999; float: right; font-weight: normal; line-height: 18px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 126px;}
+.tab_box ol li strong a {  color: #2D69B0; font-size: 14px; margin-right: 6px;}
+.tab_box ol li cite {color: #666666; float: right; font-size: 12px; height: 26px; line-height: 26px;  overflow: hidden; font-style:normal; width: 126px;}
+.tab_box ol li .online { background-position:-90px -20px; text-indent: 14px;}
+.tab_box ol li span { float: right; width: 126px;}
+.tab_box ol li span input { float: left; }
+.aside-right .tab_box ol li { padding-left: 20px;}
+
+.modbox .title h3, .my-answerbox .title h3, .module .title h3, .modbox .title h1 { font-weight: normal; font-size: 100%;}
+
+/*公共头尾部*/
+.HeaderTop-L{ float:left; height: 28px;  padding: 2px 0 0; line-height:28px;}
+.HeaderTop-L a{ color:#626262; margin:0px 3px;}
+
+.h10{ height:10px; margin:auto; clear:both; width:100%;}
+#Footer{ margin:auto; width:980px;}
+.bottomMain{width:980px;height:auto;line-height:23px;margin:0 auto}.bottomMain a{color:#3e3e3e}
+.bottomLeft{width:484px;height:65px;float:left;padding-left:10px;margin-left:15px}.bottomLeft p{height:28px;padding-top:2px}
+.bottomLeft .bottomPadding01{padding-left:10px;padding-right:10px}.bottomLeft .bottomPadding02{padding-right:5px}
+.bottomRight{width:420px;height:75px;float:left;padding-left:20px}.bottomRight a{cursor:pointer}.bottomRightIcon{width:410px}.bottomRightIcon li{height:40px;float:left}.bottomRightIcon li p{height:18px;line-height:24px;_line-height:16px;_padding-top:5px}.bottomRightIcon li.bottomWidth02 p{height:36px;line-height:36px}.bottomMargin{margin-left:30px;margin-top:4px;margin-right:4px}.bottomWidth01{width:50px}.bottomWidth02{width:130px}.bottomIconPos1{margin-top:6px}.bottomIconPos2{margin-top:5px;margin-left:4px;margin-right:4px}.bottomIconPos3{margin-top:0;margin-left:4px;margin-right:4px}
+
+.aboutKad { border: 1px solid #CCCCCC; clear: both; font-weight: bold; height: 30px; line-height: 30px; margin: 10px 0; width:978px;}
+.aboutKad p { text-align: center; width: 950px;}
+.aboutKad p a { color: #333333; margin:0px 5px;}
+
+
+/*首页专用*/
+.HomeF{ margin:auto; padding-bottom:15px; width:978px; text-align:left; background:#fdfdfd; border:1px solid #f0f0f0; color:#888888;}
+.HomeTit{ padding:15px 15px 0px; font-size:12px; font-weight:bold;}
+.HomeList{}
+.HomeList dd{ float:left; padding:10px 15px; width:164px; border-right:1px dotted #eeeeee;}
+.HomeList dd h1{ background:url(./images/ico-Hbottom.jpg) no-repeat; height:40px; overflow:hidden; padding-left:50px; font-size:12px; line-height:40px;}
+.HomeList dd h1.dh1{ background-position:-15px -15px;}
+.HomeList dd h1.dh2{ background-position:-15px -57px;}
+.HomeList dd h1.dh3{ background-position:-15px -99px;}
+.HomeList dd h1.dh4{ background-position:-15px -143px;}
+.HomeList dd h1.dh5{ background-position:-15px -187px;}
+.HomeList dd.HomeList-5{ border-right:none;}
+.HomeList dd p{ color:#b4b4b4; line-height:22px;}
+
+.friendLink { clear: both; line-height: 22px; overflow: hidden; padding-top: 5px; width: 980px; margin:auto; color:#666;}
+.flinktitle { float: left; font-weight: bold; width: 130px; text-align:center; font-size:14px;}
+.flinkcon { float: left; height: 22px; line-height: 22px; overflow: hidden; width: 800px;}
+.flinkcon a { margin-right: 8px; color:#666;}
+.friendLink .hover{ height:100%;}
+
+.Hhelp{ font-size:14px; line-height:26px; padding:0px 15px 10px;}
+.HCenBox{border: 1px solid #e4e4e4; padding:0px 10px;}
+.HCenBox .title{ font: 16px/33px Microsoft YaHei; height: 33px; padding: 5px 10px;}
+/*咨询在线医生*/
+.tab_menu { height: 28px; position: relative; width: 100%;}
+.tab_menu ul { background: #F9F9F9; left: 0; overflow: hidden; padding-bottom: 1px; position: absolute; top: 0; width: 100%;}
+.tab_menu li.selected { background: #4A8CD9; border-color: #4A8CD9; color: #FFFFFF; z-index: 2;}
+.tab_menu li { border: 1px solid #E8E8E8;color: #666666;  cursor: pointer; float: left; font: 14px/26px "Microsoft YaHei",SimSun;  height: 26px; margin: 0 -1px -1px 0; overflow: hidden; position: relative; text-align: center; width: 93px; z-index: 1;}
+.tab_menu li.more { background-position: -38px -1px ; cursor: default; height: 26px; margin: 0; overflow: hidden; padding: 0; position: absolute; right: 0; top: 0; width: 26px;}
+.tab_menu li.more_hover{ background-position:-38px -29px;}
+
+.tab_box .WTlist{ padding:10px 0px;}
+.tab_box .WTlist li{ line-height:26px; padding:0px 0px 0px 20px; background-position:-90px -40px;}
+.tab_box .WTlist li a{ font-size:14px;}
+.tab_box .WTlist a.tit{ color:#f16100; display:inline-block; width:80px;}
+.tab_box .WTlist li span{ float:right; color:#b7b7b7;}
+.tab_box .WTlist li b{color:#f16100; font-weight:normal; font-size:14px; background-position:-88px 8px; padding:0px 0px 0px 16px; display:inline-block; width:24px;}
+
+/*问答页*/
+.LnAsk{ font-size:14px; line-height:24px; padding:10px 0px;}
+.LnAsk-m{ font-size:12px;}
+.LnBestA ul{ clear:both; font-size:14px; padding:20px 10px 0px; line-height:24px;}
+.LnBestA li{ float:left; width:540px;}
+.LnBestA li.Ltit{ width:80px; font-weight:bold;}
+.LnGZimg dd{ float:left; width:132px; padding:10px 12px 10px 12px;}
+.LnGZimg dd p{ padding-top:6px; text-align:center;}
+.LnGZimg a.Lnimg{ border:1px solid #e3e3e3; display:block; width:130px;}
+.Lnmdes{ padding:0px 20px; line-height:22px;}
+.Lnmdes-mt{ font-size: 14px; font-weight: bold;}
+.Lnmdes p{ color:#666;}
+.Lntimg{ overflow:hidden; width:298px;}
+.Lntimg ul{ width:320px; padding:10px 0px 0px 9px;}
+.Lntimg li{ float:left; width:135px; height:132px; padding:0px 10px 0px 0px;}
+
+.Lbc{ padding:10px 15px;}
+.Lbc-des{ color:#666;}
+
+.Lbc-btnlist li{ float:left; padding:10px 10px 0px 0px;}
+.Lbc-btnlist li a{ display:block; width:95px; height:36px; text-align:center; line-height:36px; background:#eaeaea; font-size:14px; color:#333333;}
+.Lbc-btnlist li a:hover{ background:#4A8CD9; color:#FFFFFF; text-decoration:none;}
+.Lico-W{ background-position:0px -28px; display:block; width:26px; height:26px; position:absolute; left:0px; top:3px;}
+.Lico-Whui,.Lico-Wcheng{ color:#FFFFFF; position:absolute; left:0; padding:0px 10px;}
+.Lico-Whui{ background:#999999;}
+.Lico-Wcheng{ background:#ff8a00;}
+.pd30{ padding-left:30px;}
+.pd80{ padding-left:80px;}
+.bt-no{ border-top:none;}
+
+.Lanyz li{ float:left; padding:0px 10px 0px 0px; line-height:30px;}
+.Lanyz li.tit{ font-size:16px;}
+.Lanyz-txt{ background:url(./images/input-bg.jpg) no-repeat; border:1px solid #d6d6d6; width:80px; height:30px; text-align:center;}
+/*提问页*/
+.Laskbox{  border: 1px solid #e4e4e4;}
+.Ltitle, .Laskr-tit{ border-bottom:1px solid #e4e4e4; font-size:16px; height:50px; line-height:50px; padding:0px 18px; font-weight: bold;}
+.Ltitle a.icheck, .Ltitle a.ichecked{ color:#FFFFFF; padding:2px 8px; margin:0px 2px; background:#626262;}
+.Ltitle a.ichecked{ background:#62b545;}
+.Ltitle .mdes{ font-size:12px; color:#666;}
+.Linputbox{ padding:15px 20px; border-bottom:1px solid #e4e4e4;}
+.Lindes, .Lintxtbox{ padding:15px 20px; border-bottom:1px solid #e4e4e4;}
+.Laskbox .txt{ border: 1px solid #D6D6D6; font-size: 14px; height: 22px; line-height: 22px; padding: 12px; width: 480px;color: #666666;}
+.Laskbox .tera { background:#FFFFFF; border: 1px solid #D6D6D6; font-size: 12px; height: 62px; line-height: 22px; overflow: hidden; padding: 12px; width: 480px; color: #666666;}
+.Laskbox .txt:hover, .Laskbox .tera:hover{ border-color:#50b30e;}
+
+.Lmeslist{ padding:20px 20px 0px;}
+.Lmeslist li{ clear:both; height:40px; font-size:14px;}
+.Lmeslist li b{ color:#FF0000; font-family:Verdana; padding:2px 5px 0px 0px;}
+.Lmeslist .LBsex{}
+.Lmeslist .LByear{}
+.Lmeslist select{ width:70px; margin-right:10px;}
+.Lmeslist .mli{ font-size:12px;}
+.Lmeslist .mli select{ width:50px;}
+.Ltijiao{ padding:0px 20px 20px;}
+.Ltjbtn{border:none; color: #FFFFFF; cursor: pointer; display: inline-block; font-weight:bold; font-size: 14px; height: 34px; width: 96px; background:#62b545;}
+
+.Laskr-fwlist li{ padding:10px 20px;}
+.Lupload-btn { display:block;  width: 156px; height: 26px; text-align:center;     background:#62b545 url(./images/Lupload-btn.gif) no-repeat; color:#fff;overflow: hidden; position: relative;}
+.Lupload-file { filter:alpha(opacity=0); -moz-opacity:0; -khtml-opacity: 0; opacity: 0; margin: 0px;  padding: 0px;  top: 0px;  right: 0px;   position: absolute;  cursor: pointer; }
+
+/*科室列表*/
+
+.LnewTit{ background:#FBFBFB; height:33px; overflow:hidden; font-size: 14px; margin-bottom: 10px;}
+.LnewTit li{ float:left; border-bottom: 1px dotted #F0F0F0; height: 32px; line-height: 32px;}
+.LnewTit .Ltit, .LnewList .Ltit{ width: 410px; padding-left: 12px;}
+.LnewList .gold{ margin-right: 8px; color: #FF6600;}
+.LnewTit .Lans, .LnewList .Lans, .LnewTit .Ltime, .LnewList .Ltime{ width: 100px; font-size: 12px; color: #888888;}
+.LnewList{ clear: both; height: 32px; line-height: 32px; font-size: 14px;  background-position: -94px -60px;}
+.LnewList li{ float:left; border-bottom: 1px dotted #F0F0F0;}
+/*焦点图*/
+#divAD1_i {height: 252px; position: relative;}
+#divAD1_i .pic { display: none; position: absolute;}
+#divAD1_i .pic img {border: medium none; height: 240px;  width: 300px;}
+#divAD1_i .paging { height: 21px; left: 60px; line-height: 23px; position: absolute; text-align: center; top: 245px;  width: 200px; z-index: 100;}
+#divAD1_i .paging li {  background-color: #CCCCCC;  color: #FFFFFF;  cursor: pointer;  float: left;  height: 4px;  list-style: none outside none;  margin-right: 5px;
+    overflow: hidden; width: 30px;}

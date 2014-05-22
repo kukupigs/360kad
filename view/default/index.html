@@ -28,7 +28,7 @@
                         <h3><a target="_blank" title="{$category1['name']}" href="{url category/view/$category1['id']}">{$category1['name']}</a></h3>
                         <p>
                             <!--{loop $category1['sublist'] $index $category2}-->
-                            <!--{if $index<3}-->
+                            <!--{if $index<2}-->
                             <a href="{url category/view/$category2['id']}">{$category2['name']}</a>
                             <!--{/if}-->
                             <!--{/loop}-->
@@ -80,6 +80,18 @@
                 <!--{/loop}-->
             </ul>
         </div>
+        <div class="modbox mt10">
+            <h3 class="title">网站帮助</h3>
+            <ul class="Hhelp">
+                <li><a href="#">如何使用提问功能</a></li>
+                <li><a href="#">问题何时有回复</a></li>
+                <li><a href="#">未获满意回复怎办</a></li>
+                <li><a href="#">如何感谢医生的回答</a></li>
+                <li><a href="#">为什么问题会过期</a></li>
+                <li><a href="#">如何成为网站医生</a></li>
+                <li><a href="#">医生如何回答问题</a></li>
+            </ul>
+        </div>
     </div>
     <div class="content">
         <div class="main">
@@ -88,7 +100,7 @@
             <div class="focusbox mt10">
                 <div class="slidermod" >
                     <div class="slider-box clearfix">
-                        
+
                         <!--{loop $topiclist $index $topic}-->
                         <div class="topic" id="{$topic['id']}" <!--{if $index!=0}-->style="display:none"<!--{/if}-->>
                              <img width="228" height="170" src="{SITE_URL}{$topic['image']}"/>
@@ -117,60 +129,223 @@
             <div class="question-mod mt10">{$adlist['index']['middle1']}</div>
             <!--{/if}-->
             <!-- 待解决 -->
-            <div class="question-mod mt10">
-                <h3 class="title">待解决问题</h3>
-                <p class="more"><a href="{url category/view/all/1}" target="_blank">更多>></a></p>
-                <!--{eval $nosolvelist=$this->fromcache('nosolvelist');}-->
-                <!--{loop $nosolvelist $index $question}-->
-                <ul class="list">	    		
-                    <li>
-                        <span class="answer-number">{$question['answers']}回答</span>
-                        <a target="_blank" href="{url question/view/$question['id']}" title="{$question['title']}">{eval echo cutstr($question['title'],80);}</a>
-                        <a target="_blank" class="type" href="{url category/view/$question['cid']}" title="{$question['category_name']}">[{eval echo cutstr($question['category_name'],10,'');}]</a>
-                    </li>
-                </ul>
-                <!--{/loop}-->
-            </div>
-            <!--广告位2-->
-            <!--{if (isset($adlist['index']['middle2']) && trim($adlist['index']['middle2']))}-->
-            <div class="question-mod mt10">{$adlist['index']['middle2']}</div>
-            <!--{/if}-->
-            <!-- 悬赏问题 -->
-            <div class="question-mod mt10">
-                <h3 class="title">高分悬赏问题</h3>
-                <p class="more"><a href="{url category/view/all/4}" target="_blank">更多>></a></p>
-                <!--{eval $nosolvelist=$this->fromcache('rewardlist');}-->
-                <!--{loop $nosolvelist $index $question}-->
-                <ul class="list">	    		
-                    <li>
-                        <span class="answer-number">{$question['answers']}回答</span>
-                        <span class="gold">                
-                            <!--{if $question['price'] > 0}-->
-                            <img src="{SITE_URL}css/default/gold.gif" />{$question['price']}
-                            <!--{/if}-->
-                        </span>
-                        <a target="_blank" href="{url question/view/$question['id']}" title="{$question['title']}">{eval echo cutstr($question['title'],80);}</a>
-                        <a target="_blank" class="type" href="{url category/view/$question['cid']}" title="{$question['category_name']}">[{eval echo cutstr($question['category_name'],10,'');}]</a>
-                    </li>
-                </ul>
-                <!--{/loop}-->
-            </div>			
+               <div class="HCenBox mt10" >
+                            <h3 class="title">咨询在线医生</h3>
+                            <div class="tab_menu">
+                                <ul>
+                                    <li class="selected">内科</li>
+                                    <li>外科</li>
+                                    <li>妇产科</li>
+                                    <li>儿科</li>
+                                    <li>五官科</li>
+                                    <li style="display: none;">传染病科</li>
+                                    <li style="display: none;">中医科</li>
+                                    <li style="display: none;">精神心理科</li>
+                                    <li class="more"></li>
+                                </ul>
+                            </div>
+                            <div class="tab_box clearfix">
+                                 <div>
+                                      <ol>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘大勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘大勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘大勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘大勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                      </ol>
+                                 </div>
 
-            <!-- 最新已解决-->
-            <div class="question-mod mt10">
-                <h3 class="title">最新已解决</h3>
-                <p class="more"><a href="{url category/view/all/2}" target="_blank">更多>></a></p>
-                <!--{eval $solvelist=$this->fromcache('solvelist');}-->
-                <!--{loop $solvelist $index $question}-->
-                <ul class="list">	    		
-                    <li>
-                        <span class="answer-number">{$question['answers']}回答</span>
-                        <a target="_blank" href="{url question/view/$question['id']}" title="{$question['title']}">{eval echo cutstr($question['title'],80);}</a>
-                        <a target="_blank" class="type" href="{url category/view/$question['cid']}" title="{$question['category_name']}">[{eval echo cutstr($question['category_name'],10,'');}]</a>
-                    </li>
-                </ul>
-                <!--{/loop}-->
-            </div>
+                                 <div style="display:none;">
+                                      <ol>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘二勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘二勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘二勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘二勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                      </ol>
+                                 </div>
+                                 <div style="display:none;">
+                                      <ol>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘三勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘三勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘三勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                          <li>
+                                             <a href="#"><img alt="" src="img/1.jpg"></a>
+                                             <strong><a href="http://my.39.net/lly0806">刘三勇</a>主治医师</strong>
+                                             <cite class="online">在线</cite>
+                                             <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
+                                          </li>
+                                      </ol>
+                                 </div>
+
+                            </div>
+                </div>
+                
+                <div class="HCenBox mt10">
+                           <h3 class="title">待解决问题</h3>
+                            <div class="tab_menu">
+                                <ul>
+                                    <li class="selected">内科</li>
+                                    <li>外科</li>
+                                    <li>妇产科</li>
+                                    <li>儿科</li>
+                                    <li>五官科</li>
+                                    <li style="display: none;">传染病科</li>
+                                    <li style="display: none;">中医科</li>
+                                    <li style="display: none;">精神心理科</li>
+                                    <li class="more"></li>
+                                </ul>
+                            </div>
+                            <div class="tab_box clearfix">
+                                 <div>
+                                      <ul class="WTlist">
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[外科其他]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                      </ul>
+                                 </div>
+                            </div>
+                </div>
+                
+                <div class="HCenBox mt10">
+                           <h3 class="title">高分悬赏问题</h3>
+                            <div class="tab_menu">
+                                <ul>
+                                    <li class="selected">内科</li>
+                                    <li>外科</li>
+                                    <li>妇产科</li>
+                                    <li>儿科</li>
+                                    <li>五官科</li>
+                                    <li style="display: none;">传染病科</li>
+                                    <li style="display: none;">中医科</li>
+                                    <li style="display: none;">精神心理科</li>
+                                    <li class="more"></li>
+                                </ul>
+                            </div>
+                            <div class="tab_box clearfix">
+                                 <div>
+                                      <ul class="WTlist">
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>10</b><a href="#" class="tit">[外科其他]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a> </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>5</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>18</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                      </ul>
+                                 </div>
+                                 <div style="display:none;">
+                                      <ul class="WTlist">
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[妇科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>10</b><a href="#" class="tit">[外科其他]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a> </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>5</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>20</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><b>18</b><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                      </ul>
+                                 </div>
+                            </div>
+                </div>
+                
+                <div class="HCenBox mt10">
+                           <h3 class="title">最新已解决</h3>
+                            <div class="tab_menu">
+                                <ul>
+                                    <li class="selected">内科</li>
+                                    <li>外科</li>
+                                    <li>妇产科</li>
+                                    <li>儿科</li>
+                                    <li>五官科</li>
+                                    <li style="display: none;">传染病科</li>
+                                    <li style="display: none;">中医科</li>
+                                    <li style="display: none;">精神心理科</li>
+                                    <li class="more"></li>
+                                </ul>
+                            </div>
+                            <div class="tab_box clearfix">
+                                 <div>
+                                      <ul class="WTlist">
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[外科其他]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                          <li><span>2014-03-11</span><a href="#" class="tit">[男科]</a><a href="#">精子成活率很低请问需要怎么治疗？吃... </a>        </li>
+                                      </ul>
+                                 </div>
+                            </div>
+                </div>
             <!--广告位3-->
             <!--{if (isset($adlist['index']['middle3']) && trim($adlist['index']['middle3']))}-->
             <div class="question-mod mt10">{$adlist['index']['middle3']}</div>
@@ -239,25 +414,45 @@
         </div>
     </div>
 </div>
-<!--{if $linklist}-->
+
 <div class="wrapper mt30 clearfix">
-    <!-- 友情链接 -->
-    <div class="links">
-        <h3 class="title">友情链接</h3>
-        <div class="friendlink">
+    <div class="HomeF">
+        <div class="HomeTit">为什么选择康爱多问答</div>
+        <dl class="HomeList clearfix">
+            <dd>
+                <h1 class="dh1">行医资格认证</h1>
+                <p>康爱多问答每一位医生，都经过严格的资格认证，确保都有行医执业资格；</p>
+            </dd>
+            <dd>
+                <h1 class="dh2">万名医生</h1>
+                <p>来自全国各医院的万名医生，依据丰富的临床经验与专业知识在线服务患者；</p>
+            </dd>
+            <dd>
+                <h1 class="dh3">24小时100%回复</h1>
+                <p>所有患者的详细病情描述及健康知识，在24小时内保证100%得到医生专业回复；</p>
+            </dd>
+            <dd>
+                <h1 class="dh4">名医在线问答</h1>
+                <p>每周联合全国最优秀的三甲医院，进行名院名专家进行线上公益问答活动；</p>
+            </dd>
+            <dd class="HomeList-5">
+                <h1 class="dh5">解答全免费</h1>
+                <p>康爱多问答上的所有提问，在线医生问答均为免费，您安座家中即可连线名医;</p>
+            </dd>
+        </dl>
+    </div>
+
+    <div class="friendLink">
+        <span class="flinktitle">友&nbsp;情&nbsp;链&nbsp;接</span>
+        <div class="flinkcon">
             <!--{loop $linklist $link}-->
-            <a target="_blank" href="{$link['url']}" title="{$link['description']}">
-                <!--{if $link['logo']}-->
-                <img src="{$link['logo']}" alt="{$link['name']}" />
-                <!--{else}-->
-                {$link['name']}
-                <!--{/if}-->
-            </a>
+            <a target="_blank" href="{$link['url']}" title="{$link['description']}">{$link['name']}</a>
             <!--{/loop}-->
+            <a target="_blank" href="http://www.yuemei.com/">悦美网</a>
+            <a target="_blank" href="http://www.zhong-yao.net/">中药网</a>
         </div>
     </div>
 </div>
-<!--{/if}-->
 <script type="text/javascript">
     var timer;
     $(document).ready(function() {
@@ -298,5 +493,38 @@
             $("#weektop").hide();
         });
     });
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+/* 友情链接全部展示 */
+$(".flinkcon").hover(function () { $(this).attr("class", "flinkcon hover"); }, function () { $(this).attr("class", "flinkcon"); }); 
+/* tab 标签 */
+     var li_num = 1;
+     $(".tab_menu ul li:not(.more)").click(function(){
+          $(this).addClass("selected").siblings().removeClass("selected");
+          var index1 = $(this).index();
+          $(this).parent().parent().siblings(".tab_box").children().eq(index1).show().siblings().hide();
+          if(index1 < 5) 
+               {li_num = 1;}
+          else
+               {li_num = 2;}
+      });
+
+$(".tab_menu ul").find("li.more").hover(function() {
+   $(this).addClass("more_hover");
+   $(this).siblings().show();
+});
+
+$(".tab_menu ul").mouseleave(function() {
+   if (li_num == 1) {
+      $(this).children("li:lt(4):not(:last)").show();
+      $(this).children("li:gt(4):not(:last)").hide();
+   }else{
+      $(this).children("li:lt(4):not(:last)").hide();
+   }
+   $(this).find("li.more").removeClass("more_hover");
+});
+
+})
 </script>
 <!--{template footer}-->

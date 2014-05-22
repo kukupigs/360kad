@@ -67,7 +67,7 @@
     </div>
     <div class="aside-right">
         <!--{if $touser}-->
-        <div class="modbox">
+        <div class="modbox mb10">
             <div class="userinfo-box">
                 <div class="userinfo clearfix">
                     <a class="pic" href="{url user/space/$touser['uid']}" target="_blank"><img width="50" height="50" src="{$touser['avatar']}"></a>
@@ -78,6 +78,23 @@
             </div>
         </div>
         <!--{/if}-->
+        <div class="modbox">
+            <div class="Laskr-tit">问题提交范文</div>
+            <ul class="Laskr-fwlist">
+                <li class="Lnmdes">
+                    <h3>请将您的问题告诉我们</h3>
+                    <p>肚子疼，便秘是怎么回事？</p>
+                </li>  
+                <li class="Lnmdes">
+                    <h3>请详细描述您的问题</h3>
+                    <p>平时无不适，昨晚聚餐，喝了些酒，有点高了；早上感觉有些头晕，肚子也难受，上了几次厕所，便秘、呕吐，这是怎么了？</p>
+                </li>  
+                <li class="Lnmdes">
+                    <h3>您是否曾经检查或治疗过？</h3>
+                    <p>否</p>
+                </li>   
+            </ul>
+        </div>
         <!--广告位5-->
         <!--{if (isset($adlist['question_view']['right1']) && trim($adlist['question_view']['right1']))}-->
         <div>{$adlist['question_view']['right1']}</div>
@@ -108,103 +125,103 @@
 </div>
 <script type="text/javascript" src="{SITE_URL}js/uploadify/jquery.uploadify.js"></script>
 <script type="text/javascript">
-    var category1 = {$categoryjs[category1]};
-    var category2 = {$categoryjs[category2]};
-    var category3 = {$categoryjs[category3]};
-    var imageindex = 1;
-    $(document).ready(function() {
-        initcategory(category1);
-        $("#qtitle").keyup(function() {
-            var qbyte = bytes($.trim($(this).val()));
-            var limit = 100 - qbyte;
-            if (limit % 2 == 0) {
-                $("#limitNum span").html((limit / 2));
-            } else {
-                $("#limitNum span").html(((limit + 1) / 2));
-            }
+                    var category1 = {$categoryjs[category1]};
+                            var category2 = {$categoryjs[category2]};
+                            var category3 = {$categoryjs[category3]};
+                    var imageindex = 1;
+                    $(document).ready(function() {
+                        initcategory(category1);
+                        $("#qtitle").keyup(function() {
+                            var qbyte = bytes($.trim($(this).val()));
+                            var limit = 100 - qbyte;
+                            if (limit % 2 == 0) {
+                                $("#limitNum span").html((limit / 2));
+                            } else {
+                                $("#limitNum span").html(((limit + 1) / 2));
+                            }
 
-        });
-        $("#istreat").change(function(){
-            if($(this).val()==1){
-                $("#treatdesc_mod").show();
-            }else{
-                $("#treatdesc_mod").hide();
-            }
-        });
+                        });
+                        $("#istreat").change(function() {
+                            if ($(this).val() == 1) {
+                                $("#treatdesc_mod").show();
+                            } else {
+                                $("#treatdesc_mod").hide();
+                            }
+                        });
 
-        $('#file_upload').uploadify({
-            'swf': '{SITE_URL}js/uploadify/uploadify.swf',
-            'uploader': "{url question/ajaxupload}",
-            'auto': true,
-            'buttonImage': '{SITE_URL}js/uploadify/selectimg.gif',
-            'fileObjName': 'userimage',
-            'multi': false,
-            'fileSizeLimit': "2MB",
-            'uploadLimit' : 5,
-            'fileTypeExts': '*.jpg;*.jpeg;*.gif;*.png',
-            'fileTypeDesc': 'User Avatar(.JPG, .GIF, .PNG,.JPEG)',
-            'onUploadSuccess': function(file, data, response) {
-               $("#imagelist").append('<span class="smallimage" id="image_'+imageindex+'"><input type="hidden" name="images[]" value="'+data+'" /><img src="'+g_site_url+'/'+data+'" /><a href="javascript:void(0)" onclick="removeimage('+imageindex+')">删除</a></span>');
-               imageindex++;
-            }
-        });    
-    });
+                        $('#file_upload').uploadify({
+                            'swf': '{SITE_URL}js/uploadify/uploadify.swf',
+                            'uploader': "{url question/ajaxupload}",
+                            'auto': true,
+                            'buttonImage': '{SITE_URL}js/uploadify/selectimg.gif',
+                            'fileObjName': 'userimage',
+                            'multi': false,
+                            'fileSizeLimit': "2MB",
+                            'uploadLimit': 5,
+                            'fileTypeExts': '*.jpg;*.jpeg;*.gif;*.png',
+                            'fileTypeDesc': 'User Avatar(.JPG, .GIF, .PNG,.JPEG)',
+                            'onUploadSuccess': function(file, data, response) {
+                                $("#imagelist").append('<span class="smallimage" id="image_' + imageindex + '"><input type="hidden" name="images[]" value="' + data + '" /><img src="' + g_site_url + '/' + data + '" /><a href="javascript:void(0)" onclick="removeimage(' + imageindex + ')">删除</a></span>');
+                                imageindex++;
+                            }
+                        });
+                    });
 
-    function selectcate() {
-        var selectedcatestr = '';
-        var category1 = $("#category1 option:selected").val();
-        var category2 = $("#category2 option:selected").val();
-        var category3 = $("#category3 option:selected").val();
-        if (category1 > 0) {
-            selectedcatestr = $("#category1 option:selected").html();
-            $("#cid").val(category1);
-            $("#cid1").val(category1);
-        }
-        if (category2 > 0) {
-            selectedcatestr += " > " + $("#category2 option:selected").html();
-            $("#cid").val(category2);
-            $("#cid2").val(category2);
-        }
-        if (category3 > 0) {
-            selectedcatestr += " > " + $("#category3 option:selected").html();
-            $("#cid").val(category3);
-            $("#cid3").val(category3);
-        }
-        $("#selectedcate").html(selectedcatestr);
-        $("#changecategory").html("更改");
-        $("#catedialog").dialog("close");
-    }
+                    function selectcate() {
+                        var selectedcatestr = '';
+                        var category1 = $("#category1 option:selected").val();
+                        var category2 = $("#category2 option:selected").val();
+                        var category3 = $("#category3 option:selected").val();
+                        if (category1 > 0) {
+                            selectedcatestr = $("#category1 option:selected").html();
+                            $("#cid").val(category1);
+                            $("#cid1").val(category1);
+                        }
+                        if (category2 > 0) {
+                            selectedcatestr += " > " + $("#category2 option:selected").html();
+                            $("#cid").val(category2);
+                            $("#cid2").val(category2);
+                        }
+                        if (category3 > 0) {
+                            selectedcatestr += " > " + $("#category3 option:selected").html();
+                            $("#cid").val(category3);
+                            $("#cid3").val(category3);
+                        }
+                        $("#selectedcate").html(selectedcatestr);
+                        $("#changecategory").html("更改");
+                        $("#catedialog").dialog("close");
+                    }
 
-    function  check_form() {
-        var qtitle = $("#qtitle").val();
-        if (bytes($.trim(qtitle)) < 8 || bytes($.trim(qtitle)) > 100) {
-            alert("问题标题长度不得少于4个字，不能超过50字！");
-            $("#qtitle").focus();
-            return false;
-        }
-        if ($("#selectedcate").html() == '') {
-        initcategory(category1);
-                $("#catedialog").dialog("open");
-                return false;
-        }
-        {if $user['uid']}
-        //检查财富值是否够用
-        var offerscore = 0;
-        var selectsocre = $("#givescore").val();
-        if ($("#hidanswer:selected").val() == 1) {
-            offerscore += 10;
-        }
-        offerscore += parseInt(selectsocre);
-        if (offerscore > $user['credit2']) {
-        alert("你的财富值不够!");
-                return false;
-        }
-        {/if}   
-    }
-    
-    function removeimage(imageindex){
-        $("#image_"+imageindex).remove();
-    }
+                    function  check_form() {
+                        var qtitle = $("#qtitle").val();
+                        if (bytes($.trim(qtitle)) < 8 || bytes($.trim(qtitle)) > 100) {
+                            alert("问题标题长度不得少于4个字，不能超过50字！");
+                            $("#qtitle").focus();
+                            return false;
+                        }
+                        if ($("#selectedcate").html() == '') {
+                        initcategory(category1);
+                                $("#catedialog").dialog("open");
+                                return false;
+                        }
+                        {if $user['uid']}
+                        //检查财富值是否够用
+                        var offerscore = 0;
+                        var selectsocre = $("#givescore").val();
+                        if ($("#hidanswer:selected").val() == 1) {
+                            offerscore += 10;
+                        }
+                        offerscore += parseInt(selectsocre);
+                        if (offerscore > $user['credit2']) {
+                        alert("你的财富值不够!");
+                                return false;
+                        }
+                        {/if}   
+                    }
+
+                    function removeimage(imageindex) {
+                        $("#image_" + imageindex).remove();
+                    }
 
 </script>
 <!--{template footer}-->

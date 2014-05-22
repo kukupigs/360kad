@@ -23,6 +23,7 @@
         <meta property="wb:webmaster" content="21013a86963dbbe5" />
         <link rel="stylesheet" type="text/css" href="{SITE_URL}css/default/main.css" />
         <link rel="stylesheet" type="text/css" href="{SITE_URL}js/jquery-ui/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="{SITE_URL}css/default/homepage.css" />
         <script type="text/javascript" src="{SITE_URL}js/jquery.js"></script>
         <script type="text/javascript">var g_site_url="{SITE_URL}";var g_site_name="{$setting['site_name']}";var g_prefix="{$setting['seo_prefix']}";var g_suffix="{$setting['seo_suffix']}";var g_uid={$user['uid']};</script>
     </head>
@@ -30,15 +31,18 @@
         <div class="js-fixed">
             <div class="top-bar">
                 <div class="wrapper clearfix">
-                    <ul class="tnav">
-                        <!--{loop $headernavlist $nav}-->
-                        <!--{if $nav['type']==2 && $nav['available']}-->
-                        <li>
-                            <a title="{$nav['title']}" href="{$nav['url']}"  {if $nav['target']}target="_blank"{/if}><span text="hd-home" >{$nav['name']}</span></a>
-                        </li>
-                        <!--{/if}-->
-                        <!--{/loop}-->
-                    </ul>
+                         <div class="HeaderTop-L">
+                              <a href="http://www.360kad.com">康爱多网上药店</a> | 
+                              <a href="http://ask.360kad.com">健康问答</a> | 
+                              <a href="http://www.360kad.com/Category_45/Index.aspx">中西药品</a> | 
+                              <a href="http://www.360kad.com/dymhh/men.shtml">男科药馆</a> | 
+                              <a href="http://www.360kad.com/Category_756/Index.aspx">妇科药馆</a> | 
+                              <a href="http://www.360kad.com/Category_540/Index.aspx">成人用品</a> | 
+                              <a href="http://www.360kad.com/Category_904/Index.aspx">营养保健</a> | 
+                              <a href="http://www.360kad.com/medical/">医疗器械</a> | 
+                              <a href="http://www.360kad.com/Medication/">用药问答</a> | 
+                              <a href="http://www.360kad.com/jknews/">健康资讯</a>
+                         </div>
                     <div class="tuser-top-inner">
                         <!--{if 0!=$user['uid']}-->
                         <ul class="tuser-login">
@@ -76,7 +80,7 @@
                         <!--{else}-->
                         <ul class="tuser-login">
                             <li class="tuser-bar">
-                                <span>您好，欢迎来到{$setting['site_name']}!&nbsp;&nbsp;[<a  href="javascript:void(0);" onclick="login();">请登录</a>]</span>|<span>[<a href="{url user/register}">免费注册</a>]</span>
+                                <span>[<a  href="javascript:void(0);" onclick="login();">请登录</a>]</span>|<span>[<a href="{url user/register}">免费注册</a>]</span>
                                 <p style="display:none;" class="pub-login-tips">登录体验更流畅的互动沟通 <i></i><span class="top-close"></span></p>
                             </li>
                         </ul>
@@ -99,7 +103,6 @@
                 </div>
             </div>
         </div>
-        <div style="height:92px;"></div>
         <div id="navbox">
             <div class="main-nav clearfix">
                 <ul class="navlist">
