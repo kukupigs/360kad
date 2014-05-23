@@ -29,8 +29,6 @@ class base {
         $this->init_user();
         $this->checkcode();
         $this->banned();
-        
-        
     }
 
     function init_db() {
@@ -59,19 +57,19 @@ class base {
         switch ($cachename) {
             case 'nosolvelist': //待解决问题，网友正在问
                 $this->load('question');
-                $cachedata = $_ENV['question']->list_by_cfield_cvalue_status('', 0, 1, 0, $this->setting['list_indexnosolve']);
+                $cachedata = $_ENV['question']->list_all_category(1,$this->setting['list_indexnosolve']);
                 break;
             case 'solvelist'://已解决问题
                 $this->load('question');
-                $cachedata = $_ENV['question']->list_by_cfield_cvalue_status('', 0, 2, 0, $this->setting['list_indexnosolve']);
+                $cachedata = $_ENV['question']->list_all_category(2, $this->setting['list_indexnosolve']);
                 break;
             case 'rewardlist'://悬赏的问题
                 $this->load('question');
-                $cachedata = $_ENV['question']->list_by_cfield_cvalue_status('', 0, 4, 0, $this->setting['list_indexreward']);
+                $cachedata = $_ENV['question']->list_all_category(4, $this->setting['list_indexnosolve']);
                 break;
             case 'attentionlist'://关注问题排行榜
                 $this->load('question');
-                $cachedata = $_ENV['question']->get_hots(0,0,8);
+                $cachedata = $_ENV['question']->get_hots(0, 0, 8);
                 break;
             case 'weekuserlist'://达人飙升榜
                 $this->load('user');
@@ -101,11 +99,15 @@ class base {
                 break;
             case 'topiclist':
                 $this->load('topic');
-                $cachedata = $_ENV['topic']->get_list(1,0,3,4);
+                $cachedata = $_ENV['topic']->get_list(1, 0, 3, 4);
                 break;
             case 'expertlist':
                 $this->load('expert');
                 $cachedata = $_ENV['expert']->get_list(0, 0, $this->setting['list_indexexpert']);
+                break;
+            case 'indexexpertlist':
+                $this->load('expert');
+                $cachedata = $_ENV['expert']->list_by_category();
                 break;
             case 'onlineusernum':
                 $this->load('user');
@@ -145,7 +147,7 @@ class base {
         @$sid = tcookie('sid');
         @$auth = tcookie('auth');
         $user = array();
-        @list($uid, $password) = empty($auth) ? array(0, 0) : taddslashes(explode("\t", authcode($auth,'DECODE')), 1);
+        @list($uid, $password) = empty($auth) ? array(0, 0) : taddslashes(explode("\t", authcode($auth, 'DECODE')), 1);
         if (!$sid) {
             $sid = substr(md5(time() . $this->ip . random(6)), 16, 16);
             tcookie('sid', $sid, 31536000);

@@ -12,7 +12,7 @@ class expertmodel {
         $this->db = $base->db;
     }
 
-    function get_list($showquestion=0, $start=0, $limit=3) {
+    function get_list($showquestion = 0, $start = 0, $limit = 3) {
         $expertlist = array();
         $query = $this->db->query("SELECT *  FROM " . DB_TABLEPRE . "user WHERE expert=1 ORDER BY credit1 DESC,answers DESC LIMIT $start ,$limit");
         while ($expert = $this->db->fetch_array($query)) {
@@ -33,7 +33,7 @@ class expertmodel {
         return $this->db->fetch_array($this->db->query("SELECT * FROM " . DB_TABLEPRE . "expert WHERE `username`='$username'"));
     }
 
-    function get_by_cid($cid, $start=0, $limit=10) {
+    function get_by_cid($cid, $start = 0, $limit = 10) {
         $expertlist = array();
         $query = ($cid == 'all') ? $this->db->query("SELECT * FROM " . DB_TABLEPRE . "user WHERE uid IN (SELECT uid FROM " . DB_TABLEPRE . "user_category) ORDER BY answers DESC LIMIT $start,$limit") : $this->db->query("SELECT * FROM " . DB_TABLEPRE . "user WHERE uid IN (SELECT uid FROM " . DB_TABLEPRE . "user_category WHERE cid=$cid) ORDER BY answers DESC  LIMIT $start,$limit");
         while ($expert = $this->db->fetch_array($query)) {
@@ -67,7 +67,7 @@ class expertmodel {
         return $categorylist;
     }
 
-    function get_solves($start=0, $limit=20) {
+    function get_solves($start = 0, $limit = 20) {
         $solvelist = array();
         $query = $this->db->query("SELECT a.qid,a.title FROM " . DB_TABLEPRE . "answer  as a ,`" . DB_TABLEPRE . "expert` as f WHERE a.authorid=f.uid ORDER BY a.time DESC LIMIT $start ,$limit");
         while ($solve = $this->db->fetch_array($query)) {
@@ -76,13 +76,24 @@ class expertmodel {
         return $solvelist;
     }
 
-    function get_solve_answer($uid, $start=0, $limit=3) {
+    function get_solve_answer($uid, $start = 0, $limit = 3) {
         $solvelist = array();
         $query = $this->db->query("SELECT * FROM `" . DB_TABLEPRE . "answer` WHERE `authorid`=" . $uid . "  ORDER BY `adopttime` DESC,`supports` DESC LIMIT $start,$limit");
         while ($solve = $this->db->fetch_array($query)) {
             $solvelist[] = $solve;
         }
         return $solvelist;
+    }
+
+    function list_by_category($pagesize = 4) {
+        $indexexpertlist = array();
+        foreach ($this->base->category as $key => $category) {
+            if ($category['pid'] == 0) {                
+                $category['expertlist'] = $this->get_by_cid($category['id'],0,$pagesize);
+                $indexexpertlist[] = $category;
+            }
+        }
+        return $indexexpertlist;
     }
 
 }

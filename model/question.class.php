@@ -114,7 +114,7 @@ class questionmodel {
             $category = $this->base->category[$cid];
             $condition .= " AND `cid" . $category['grade'] . "`= $cid ";
         }
-        
+
         isset($this->statustable[$status]) && $condition.=$this->statustable[$status];
         return $this->db->fetch_total('question', $condition);
     }
@@ -562,6 +562,22 @@ class questionmodel {
                 $this->index->add($doc);
             }
         }
+    }
+
+    /**
+     * 列出所有一级分类下的问题列表
+     * @param type $start
+     * @param type $limit
+     */
+    function list_all_category($status=1,$size=10) {
+        $indexcategorylist = array();
+        foreach ($this->base->category as $key => $category) {
+            if ($category['pid'] == 0) {
+                $category['questionlist'] = $this->list_by_cfield_cvalue_status("cid1", $category['id'], $status, 0, $size);
+                $indexcategorylist[] = $category;
+            }
+        }
+        return $indexcategorylist;
     }
 
 }

@@ -178,8 +178,7 @@ class categorymodel {
 
     function order_category($id, $order) {
         $this->db->query("UPDATE `" . DB_TABLEPRE . "category` SET 	`displayorder` = '{$order}' WHERE `id` = '{$id}'");
-    }
-
+    }    
 }
 
 ?>
