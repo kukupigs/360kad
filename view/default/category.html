@@ -44,29 +44,27 @@
             </div>
             <div class="bd">
                 <div class="cls-qa-table">
-                    <table>
-                        <tbody>
-                            <tr class=""><th class="s0">标题</th><th class="s1">回答/浏览</th><th class="s2">时间</th></tr>
-                            <!--{loop $questionlist $question}-->
-                            <tr>
-                                <td class="title">
-                                    <div class="tit-full">
-                                        <div class="wrap">
-                                            <span class="gold">                
-                                                <!--{if $question['price'] > 0}-->
-                                                <img src="{SITE_URL}css/default/gold.gif" />{$question['price']}
-                                                <!--{/if}-->
-                                            </span>
-                                            <a href="{url question/view/$question['id']}" target="_blank" title="{$question['title']}">{eval echo cutstr($question['title'],50);}</a>&nbsp;<span class="cate">[<a target="_blank" href="{url category/view/$question['cid']}" title="{$question['category_name']}" class="lei">{eval echo cutstr($question['category_name'],14,'');}</a>]</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>{$question['answers']}/{$question['views']}</td>
-                                <td>{$question['format_time']}</td>
-                            </tr>
-                            <!--{/loop}-->
-                        </tbody>
-                    </table>
+                    <div class="cls-qa-table">
+                        <ol class="LnewTit">
+                            <li class="Ltit">标题</li>
+                            <li class="Lans">回答/浏览</li>
+                            <li class="Ltime">时间</li>
+                        </ol>
+                        <!--{loop $questionlist $question}-->
+                        <ul class="LnewList">
+                            <li class="Ltit">
+                                <span class="gold">                
+                                    <!--{if $question['price'] > 0}-->
+                                    <img src="{SITE_URL}css/default/gold.gif" />{$question['price']}
+                                    <!--{/if}-->
+                                </span>
+                                <a href="{url question/view/$question['id']}" target="_blank" title="{$question['title']}">{eval echo cutstr($question['title'],50);}</a>&nbsp;<span class="cate">[<a target="_blank" href="{url category/view/$question['cid']}" title="{$question['category_name']}" class="lei">{eval echo cutstr($question['category_name'],14,'');}</a>]</span>
+                            </li>
+                            <li class="Lans">{$question['answers']}/{$question['views']}</li>
+                            <li class="Ltime">{$question['format_time']}</li>
+                        </ul>
+                        <!--{/loop}-->
+                    </div>
                 </div>
                 <div class="pages">{$departstr}</div>
             </div>

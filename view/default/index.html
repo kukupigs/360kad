@@ -6,13 +6,13 @@
     <div class="icon_count"/></div><span>已解决问题：{$statistics['solves']}</span><span>待解决问题：{$statistics['nosolves']}</span><span>当前在线：{$onlineusernum[0]}人</span>
 <div id="scoll-note">
     <ul>
-        <!--{eval $notelist=$this->fromcache('notelist');}-->
-        <!--{loop $notelist $nindex $note}-->
-        <!--{eval $nindex++}-->
-        <!--{if $nindex<=3}-->
-        <li><a target="_blank" title="{$note['title']}" {if $note['url']}href="{$note['url']}"{else}href="{url note/view/$note['id']}"{/if}>{eval echo cutstr({$note['title']},40,'');}</a><span>( {eval echo cutstr($note['format_time'],10,'')} )</span></li>
-        <!--{/if}-->
-        <!--{/loop}-->
+    <!--{eval $notelist=$this->fromcache('notelist');}-->
+    <!--{loop $notelist $nindex $note}-->
+    <!--{eval $nindex++}-->
+    <!--{if $nindex<=3}-->
+    <li><a target="_blank" title="{$note['title']}" {if $note['url']}href="{$note['url']}"{else}href="{url note/view/$note['id']}"{/if}>{eval echo cutstr({$note['title']},40,'');}</a><span>( {eval echo cutstr($note['format_time'],10,'')} )</span></li>
+    <!--{/if}-->
+    <!--{/loop}-->
     </ul>
 </div>
 </div>
@@ -26,19 +26,10 @@
                 <div class="categorybox curr_menu">
                     <div class="cate-item">
                         <h3><a target="_blank" title="{$category1['name']}" href="{url category/view/$category1['id']}">{$category1['name']}</a></h3>
-                        <p>
-                            <!--{loop $category1['sublist'] $index $category2}-->
-                            <!--{if $index<2}-->
-                            <a href="{url category/view/$category2['id']}">{$category2['name']}</a>
-                            <!--{/if}-->
-                            <!--{/loop}-->
+                        <p><!--{loop $category1['sublist'] $index $category2}--><!--{if $index<2}--><a href="{url category/view/$category2['id']}">{$category2['name']}</a><!--{/if}--><!--{/loop}-->
                         </p>
                     </div>
-                    <ul class="subcate clearfix">
-                        <!--{loop $category1['sublist'] $index $category2}-->
-                        <li><a href="{url category/view/$category2['id']}">{$category2['name']}</a></li>
-                        <!--{/loop}-->
-                    </ul>
+                    <ul class="subcate clearfix"><!--{loop $category1['sublist'] $index $category2}--><li><a href="{url category/view/$category2['id']}">{$category2['name']}</a></li><!--{/loop}--></ul>
                 </div>
                 <!--{/loop}--> 
             </div>
@@ -412,85 +403,81 @@
     </div>
 </div>
 <script type="text/javascript">
-    var timer;
-    $(document).ready(function() {
-        $(".curr_menu").hover(function() {
-            $(this).addClass("categorybox-hover");
-        }, function() {
-            $(this).removeClass("categorybox-hover");
-        });
-        //note scroll
-        setInterval(function() {
+            var timer;
+            $(document).ready(function() {
+    $(".curr_menu").hover(function() {
+    $(this).addClass("categorybox-hover");
+    }, function() {
+    $(this).removeClass("categorybox-hover");
+    });
+            //note scroll
+            setInterval(function() {
             $("#scoll-note ul:first").animate({
-                marginTop: "-29px"
+            marginTop: "-29px"
             }, 400, function() {
-                $(this).css({marginTop: "0px"}).find("li:first").appendTo(this);
+            $(this).css({marginTop: "0px"}).find("li:first").appendTo(this);
             });
-            $(".pagination ul:first").animate();
-        }, 3000);
-        //slider
-        $(".pagination li").hover(function() {
-            $(".pagination li[class='spanhover']").removeClass("spanhover");
+                    $(".pagination ul:first").animate();
+            }, 3000);
+            //slider
+            $(".pagination li").hover(function() {
+    $(".pagination li[class='spanhover']").removeClass("spanhover");
             var topicid = $(this).attr("topicid");
             $(this).addClass("spanhover");
             timer = setTimeout(function() {
-                $(".topic").hide();
-                $("#" + topicid).show();
+            $(".topic").hide();
+                    $("#" + topicid).show();
             }, 100);
-        });
-        $("#weektab").hover(function() {
-            $(this).attr("class", "select");
+    });
+            $("#weektab").hover(function() {
+    $(this).attr("class", "select");
             $("#alltab").attr("class", "not-selected");
             $("#weektop").show();
             $("#alltop").hide();
-        });
-        $("#alltab").hover(function() {
-            $(this).attr("class", "select");
+    });
+            $("#alltab").hover(function() {
+    $(this).attr("class", "select");
             $("#weektab").attr("class", "not-selected");
             $("#alltop").show();
             $("#weektop").hide();
-        });
     });
-</script>
+    });</script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        /* 友情链接全部展示 */
-        $(".flinkcon").hover(function() {
-            $(this).attr("class", "flinkcon hover");
-        }, function() {
-            $(this).attr("class", "flinkcon");
-        });
-        /* tab 标签 */
-        var li_num = 1;
-        $(".tab_menu ul li:not(.more)").click(function() {
-            $(this).addClass("selected").siblings().removeClass("selected");
+            $(document).ready(function() {
+    /* 友情链接全部展示 */
+    $(".flinkcon").hover(function() {
+    $(this).attr("class", "flinkcon hover");
+    }, function() {
+    $(this).attr("class", "flinkcon");
+    });
+            /* tab 标签 */
+            var li_num = 1;
+            $(".tab_menu ul li:not(.more)").click(function() {
+    $(this).addClass("selected").siblings().removeClass("selected");
             var index1 = $(this).index();
             $(this).parent().parent().siblings(".tab_box").children().eq(index1).show().siblings().hide();
             if (index1 < 5)
-            {
-                li_num = 1;
-            }
-            else
-            {
-                li_num = 2;
-            }
-        });
-
-        $(".tab_menu ul").find("li.more").hover(function() {
-            $(this).addClass("more_hover");
+    {
+    li_num = 1;
+    }
+    else
+    {
+    li_num = 2;
+    }
+    });
+            $(".tab_menu ul").find("li.more").hover(function() {
+    $(this).addClass("more_hover");
             $(this).siblings().show();
-        });
-
-        $(".tab_menu ul").mouseleave(function() {
-            if (li_num == 1) {
-                $(this).children("li:lt(4):not(:last)").show();
-                $(this).children("li:gt(4):not(:last)").hide();
-            } else {
-                $(this).children("li:lt(4):not(:last)").hide();
-            }
-            $(this).find("li.more").removeClass("more_hover");
-        });
-
+    });
+            $(".tab_menu ul").mouseleave(function() {
+    if (li_num == 1) {
+    $(this).children("li:lt(4):not(:last)").show();
+            $(this).children("li:gt(4):not(:last)").hide();
+    } else {
+    $(this).children("li:lt(4):not(:last)").hide();
+    }
+    $(this).find("li.more").removeClass("more_hover");
+    });
     })
 </script>
 <!--{template footer}-->

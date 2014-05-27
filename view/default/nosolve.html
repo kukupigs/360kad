@@ -11,9 +11,8 @@
 <div class="wrapper clearfix">
     <div class="content-left">
         <div class="questionbox">
-            <div class="title pd40">
-                <span class="ico ico-nosolve"></span>
-                <h1>{$question['title']} </h1>
+            <div class="title pd80">
+                <h1><span class="Lico-Wcheng">待解决</span>{$question['title']} </h1>
             </div>
             <div class="tags">
                 <!--{loop $taglist $tag}-->
@@ -37,12 +36,12 @@
                     <span>性别:{if $question['gender']==1}男{elseif $question['gender']==0}女{else}未知{/if}</span>
                     <span class="span-line">|</span>
                     <span>年龄:{if $question['age']}{$question['age']}{else}1岁以下{/if}</span>
-                    <span class="span-line">|</span><span>{if $question['istreat']}曾今接受过治疗或检查{else}未接受治疗和检查{/if}</span>
-                    <span class="span-line">|</span><span>浏览{$question['views']}次</span>
+                    <span class="span-line">|</span><span>{$question['format_time']}</span>
                 </div>
-                <div class="timeright"><span><a href="{url favorite/add/$question['id']}">收藏</a></span><span class="span-line">|</span>{$question['format_time']}</div>                    
+                <div class="timeright"><span><a href="{url favorite/add/$question['id']}">收藏</a></span></div>                       
             </div>
-            <div class="description clearfix">
+            <div class="LnAsk">
+                <div class="LnAsk-m">病情描述（发病时间、主要症状、症状变化等）</div>
                 {$question['description']}
                 <!--{if $question['istreat'] && $question['treatdesc']}-->
                 <p>曾今检查/治疗结果:<br />{$question['treatdesc']}</p>
@@ -55,7 +54,7 @@
                     <!--{/loop}-->
                 </p>
                 <!--{/if}-->
-            </div> 
+            </div>       
             <div class="mainbox mt10">
                 <ul>
                     <!--{loop $supplylist $supply}-->
@@ -63,26 +62,26 @@
                     <!--{/loop}-->
                 </ul>
             </div>
-            <!--{if 0!=$question['authorid'] && ($question['authorid']==$user['uid'])}-->
-            <div class="managebox mt10">
-                <h3>处理问题：</h3>
-                <p> 如果已获得满意的回答，请及时采纳，感谢回答者。若还没有满意的回答，可以尝试以下操作：</p>
-                <span><input type="button" title="补充提问细节，以得到更准确的答案" class="button_4" name="supply_question" value="问题补充" onclick="javascript:document.location = '{url question/supply/$question['id']}'"/></span>
-                <span><input type="button" title="提高悬赏，以提高问题的关注度" class="button_4" name="append_score" onclick="append_score();" value="提高悬赏" /></span>
-                <span><input type="button" class="button_4" value="添加标签" title="修改问题标签" onclick="edittag();" /></span>
-                <span><input type="button" title="无满意答案的回答，可以直接结束提问，关闭问题" class="button_4" name="close_question" value="关闭问题"  onclick="close_question();"/></span>
-            </div>
-            <!--{/if}-->
             <!--广告位1-->
             <!--{if (isset($adlist['question_view']['inner1']) && trim($adlist['question_view']['inner1']))}-->
             <div class="description">{$adlist['question_view']['inner1']}</div>
             <!--{/if}-->
         </div>
-        <div class="share-content">{$setting['question_share']}</div>
-        <!--广告位2-->
-        <!--{if (isset($adlist['question_view']['left1']) && trim($adlist['question_view']['left1']))}-->
-        <div class="share-content">{$adlist['question_view']['left1']}</div>
+        <!--{if 0!=$question['authorid'] && ($question['authorid']==$user['uid'])}-->
+        <div class="module bt-no">
+            <div class="Lbc">
+                <p class="Lbc-des">如果已获得满意的回答，请及时采纳，感谢回答者。若还没有满意的回答，可以尝试一下操作：</p>
+                <ul class="Lbc-btnlist clearfix">
+                    <li><a title="补充提问细节，以得到更准确的答案" href="{url question/supply/$question['id']}">问题补充</a></li>
+                    <li><a title="提高悬赏，以提高问题的关注度" href="javascript:void(0)" onclick="append_score();">提高悬赏</a></li>
+                    <li><a href="javascript:void(0)" onclick="edittag();">添加标签</a></li>
+                    <li><a title="无满意答案的回答，可以直接结束提问，关闭问题" href="javascript:void(0)" onclick="close_question();">关闭问题</a></li>
+                </ul>
+            </div>
+        </div>
         <!--{/if}-->
+        <div class="share-content">{$setting['question_share']}</div>
+
         <!--{if !$already && $user['uid']!= $question['authorid']}-->
         <div id="replyArea" class="your-answer-mod clearfix">
             <div class="title">我来回答</div>
@@ -128,45 +127,45 @@
                                     <h4 class="appendask">追问:<span class='time'>{$append['format_time']}</span></h4>
                                     <!--{/if}-->
                                     {$append['content']}                                    
-                                <div class="clr"></div>
+                                    <div class="clr"></div>
                                 </div>
                                 <!--{/loop}-->
-                        </div>
-                        <!--{if $user['uid']>0}-->
-                        <div class="mt10">
-                            <!--{if $user['uid']==$question['authorid']}-->
-                            <input type="button" class="button_7" value="采纳为满意回答" onclick="adoptanswer({$answer['id']});" />
-                            <input type="button" class="button_4" value="继续追问" onclick="javascript:document.location = '{url answer/append/$question['id']/$answer['id']}'" />
-                            <!--{elseif $user['uid']==$answer['authorid']}-->
-                            <input type="button" class="button_4" value="修改答案"  onclick="javascript:document.location = '{url question/editanswer/$answer['id']/0}'" />
-                            <input type="button"  value="继续回答" name="submit"  onclick="javascript:document.location = '{url answer/append/$question['id']/$answer['id']}'" class="button_4"/>
-                            <!--{/if}-->
-                        </div>
-                        <!--{/if}-->
-                    </div>
-                    <div class="clr"></div>
-                    <div class="comment-box mt10">
-                        <div class="comments-hd">
-                            <div class="function" id="{$answer['id']}">
-                                <span class="number"><a onclick="show_comment('{$answer['id']}');" href="javascript:void(0)">评论({$answer['comments']})</a></span>
-                                <input type="button" class="button_agree" value="{$answer['supports']}" />                                
                             </div>
-                            <span class="time">回答于 {$answer['time']}</span>
-                            <!--{if $user['grouptype']==1}-->
-                            <span class="admin"><a href="javascript:void(0);" onclick="adoptanswer({$answer['id']});">采纳为最佳答案</a><span class="span-line">|</span><a href="{url question/editanswer/$answer['id']}">编辑内容</a><span class="span-line">|</span><a href="javascript:void(0);" onclick="delete_answer('{$answer['id']}', '{$question['id']}')">删除</a></span>
+                            <!--{if $user['uid']>0}-->
+                            <div class="mt10">
+                                <!--{if $user['uid']==$question['authorid']}-->
+                                <input type="button" class="button_7" value="采纳为满意回答" onclick="adoptanswer({$answer['id']});" />
+                                <input type="button" class="button_4" value="继续追问" onclick="javascript:document.location = '{url answer/append/$question['id']/$answer['id']}'" />
+                                <!--{elseif $user['uid']==$answer['authorid']}-->
+                                <input type="button" class="button_4" value="修改答案"  onclick="javascript:document.location = '{url question/editanswer/$answer['id']/0}'" />
+                                <input type="button"  value="继续回答" name="submit"  onclick="javascript:document.location = '{url answer/append/$question['id']/$answer['id']}'" class="button_4"/>
+                                <!--{/if}-->
+                            </div>
                             <!--{/if}-->
                         </div>
+                        <div class="clr"></div>
+                        <div class="comment-box mt10">
+                            <div class="comments-hd">
+                                <div class="function" id="{$answer['id']}">
+                                    <span class="number"><a onclick="show_comment('{$answer['id']}');" href="javascript:void(0)">评论({$answer['comments']})</a></span>
+                                    <input type="button" class="button_agree" value="{$answer['supports']}" />                                
+                                </div>
+                                <span class="time">回答于 {$answer['time']}</span>
+                                <!--{if $user['grouptype']==1}-->
+                                <span class="admin"><a href="javascript:void(0);" onclick="adoptanswer({$answer['id']});">采纳为最佳答案</a><span class="span-line">|</span><a href="{url question/editanswer/$answer['id']}">编辑内容</a><span class="span-line">|</span><a href="javascript:void(0);" onclick="delete_answer('{$answer['id']}', '{$question['id']}')">删除</a></span>
+                                <!--{/if}-->
+                            </div>
 
-                        <div class="comments-mod" style="display: none;margin-left: 70px;" id="comment_{$answer['id']}">
-                            <div class="areabox clearfix">
-                                <input type="text"  class="comment-input" name="content" />
-                                <input type="button" value="评论"  class="normal-button" name="submit" onclick="addcomment({$answer['id']});"/>
+                            <div class="comments-mod" style="display: none;margin-left: 70px;" id="comment_{$answer['id']}">
+                                <div class="areabox clearfix">
+                                    <input type="text"  class="comment-input" name="content" />
+                                    <input type="button" value="评论"  class="normal-button" name="submit" onclick="addcomment({$answer['id']});"/>
+                                </div>
+                                <ul class="comments-list">
+                                    <li class="loading"><img src='{SITE_URL}css/default/loading.gif' align='absmiddle' />&nbsp;加载中...</li>
+                                </ul>
                             </div>
-                            <ul class="comments-list">
-                                <li class="loading"><img src='{SITE_URL}css/default/loading.gif' align='absmiddle' />&nbsp;加载中...</li>
-                            </ul>
                         </div>
-                    </div>
                 </li>
                 <!--{/loop}-->
             </ul>
@@ -186,6 +185,11 @@
             </ul>
         </div>
         <!--{/if}-->
+        <!--广告位3-->
+        <!--{if (isset($adlist['question_view']['left2']) && trim($adlist['question_view']['left2']))}-->
+        <div class="h10"></div>
+        <div>{$adlist['question_view']['left2']}</div>
+        <!--{/if}-->
         <!--{if $nosolvelist}-->
         <div class="module mt10">
             <div class="title">等你来帮忙</div>
@@ -202,11 +206,7 @@
             {$curcategory['ad1']}
         </div>
         <!--{/if}-->
-        <!--{if $curcategory['ad2']}-->
-        <div class="module mt10">
-            {$curcategory['ad2']}
-        </div>
-        <!--{/if}-->
+
         <!--广告位4-->
         <!--{if (isset($adlist['question_view']['left3']) && trim($adlist['question_view']['left3']))}-->
         <div>{$adlist['question_view']['left3']}</div>
@@ -214,6 +214,9 @@
     </div>
 
     <div class="aside-right">
+        <!--{if $curcategory['ad2']}-->
+        {$curcategory['ad2']}
+        <!--{/if}-->
         <!--{if 1==$user['grouptype'] && $user['uid']}-->
         <div class="modbox mb10">
             <div class="userinfo-box">
@@ -247,11 +250,10 @@
             </ul>
         </div>
         <!--{/if}-->
-        <!--广告位5-->
-        <!--{if (isset($adlist['question_view']['right1']) && trim($adlist['question_view']['right1']))}-->
-        <div>{$adlist['question_view']['right1']}</div>
+        <!--广告位2-->
+        <!--{if (isset($adlist['question_view']['left1']) && trim($adlist['question_view']['left1']))}-->
+        {$adlist['question_view']['left1']}
         <!--{/if}-->
-
         <!--{eval $topiclist=$this->fromcache('topiclist');}-->
         <!--{if $topiclist}-->
         <!--{eval $topic = $topiclist[0];}-->
@@ -265,23 +267,27 @@
             </ul>
         </div>
         <!--{/if}-->
-           <!-- 关注问题排行榜 -->
-            <div class="modbox mt10">
-                <div class="title">一周热点问题</div>
-                <ul class="right-list">
-                    <!--{loop $attentionlist $index $attention}-->
-                    <!--{eval $index++;}-->
-                    <li>
-                        <!--{if $index<4}-->
-                        <em class="n1">{$index}</em>
-                        <!--{else}-->
-                        <em class="n2">{$index}</em>
-                        <!--{/if}-->
-                        <a  title="{$attention['title']}" target="_blank" href="{url question/view/$attention['id']}">{eval echo cutstr($attention['title'],40,'');}</a>
-                    </li>
-                    <!--{/loop}-->
-                </ul>
-            </div>
+        <!--精彩推荐-->
+        <!--{if $curcategory['ad3']}-->
+        {$curcategory['ad3']}
+        <!--{/if}-->
+        <!-- 关注问题排行榜 -->
+        <div class="modbox mt10">
+            <div class="title">一周热点问题</div>
+            <ul class="right-list">
+                <!--{loop $attentionlist $index $attention}-->
+                <!--{eval $index++;}-->
+                <li>
+                    <!--{if $index<4}-->
+                    <em class="n1">{$index}</em>
+                    <!--{else}-->
+                    <em class="n2">{$index}</em>
+                    <!--{/if}-->
+                    <a  title="{$attention['title']}" target="_blank" href="{url question/view/$attention['id']}">{eval echo cutstr($attention['title'],40,'');}</a>
+                </li>
+                <!--{/loop}-->
+            </ul>
+        </div>
     </div>
 
 </div>
@@ -424,7 +430,7 @@
                         document.location.href = "{url question/delete/$question['id']}";
                         }
                         });
-                                $(".anscontent img,.description img,.mainbox img,.qa-content img").each(function(i) {
+                                $(".anscontent img,.LnAsk img,.mainbox img,.qa-content img").each(function(i) {
                         var img = $(this);
                                 $.ajax({
                                 type: "POST",

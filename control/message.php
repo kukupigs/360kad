@@ -51,7 +51,7 @@ class messagecontrol extends base {
             (!$touser) && $this->message('该用户不存在!', "message/send");
             ($touser['uid'] == $this->user['uid']) && $this->message("不能给自己发消息!", "message/send");
             (trim($this->post['content']) == '') && $this->message("消息内容不能为空!", "message/send");
-            $_ENV['message']->add($this->user['username'], $this->user['uid'], $touser['uid'], $this->post['subject'], $this->post['content']);
+            $_ENV['message']->add($this->user['username'], $this->user['uid'], $touser['uid'], htmlspecialchars($this->post['subject']), $this->post['content']);
             $this->credit($this->user['uid'], $this->setting['credit1_message'], $this->setting['credit2_message']);
             $this->message('消息发送成功!', get_url_source());
         }
