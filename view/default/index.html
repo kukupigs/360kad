@@ -6,13 +6,13 @@
     <div class="icon_count"/></div><span>已解决问题：{$statistics['solves']}</span><span>待解决问题：{$statistics['nosolves']}</span><span>当前在线：{$onlineusernum[0]}人</span>
 <div id="scoll-note">
     <ul>
-    <!--{eval $notelist=$this->fromcache('notelist');}-->
-    <!--{loop $notelist $nindex $note}-->
-    <!--{eval $nindex++}-->
-    <!--{if $nindex<=3}-->
-    <li><a target="_blank" title="{$note['title']}" {if $note['url']}href="{$note['url']}"{else}href="{url note/view/$note['id']}"{/if}>{eval echo cutstr({$note['title']},40,'');}</a><span>( {eval echo cutstr($note['format_time'],10,'')} )</span></li>
-    <!--{/if}-->
-    <!--{/loop}-->
+        <!--{eval $notelist=$this->fromcache('notelist');}-->
+        <!--{loop $notelist $nindex $note}-->
+        <!--{eval $nindex++}-->
+        <!--{if $nindex<=3}-->
+        <li><a target="_blank" title="{$note['title']}" {if $note['url']}href="{$note['url']}"{else}href="{url note/view/$note['id']}"{/if}>{eval echo cutstr({$note['title']},40,'');}</a><span>( {eval echo cutstr($note['format_time'],10,'')} )</span></li>
+        <!--{/if}-->
+        <!--{/loop}-->
     </ul>
 </div>
 </div>
@@ -148,64 +148,7 @@
                             <!--{/loop}-->
                         </ol>
                     </div>    
-                    <!--{/loop}--> 
-                    <div style="display:none;">
-                        <ol>
-                            <li>
-                                <a href="#"><img alt="" src="img/1.jpg"></a>
-                                <strong><a href="http://my.39.net/lly0806">刘二勇</a>主治医师</strong>
-                                <cite class="online">在线</cite>
-                                <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="img/1.jpg"></a>
-                                <strong><a href="http://my.39.net/lly0806">刘二勇</a>主治医师</strong>
-                                <cite class="online">在线</cite>
-                                <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="img/1.jpg"></a>
-                                <strong><a href="http://my.39.net/lly0806">刘二勇</a>主治医师</strong>
-                                <cite class="online">在线</cite>
-                                <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="img/1.jpg"></a>
-                                <strong><a href="http://my.39.net/lly0806">刘二勇</a>主治医师</strong>
-                                <cite class="online">在线</cite>
-                                <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
-                            </li>
-                        </ol>
-                    </div>
-                    <div style="display:none;">
-                        <ol>
-                            <li>
-                                <a href="#"><img alt="" src="img/1.jpg"></a>
-                                <strong><a href="http://my.39.net/lly0806">刘三勇</a>主治医师</strong>
-                                <cite class="online">在线</cite>
-                                <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="img/1.jpg"></a>
-                                <strong><a href="http://my.39.net/lly0806">刘三勇</a>主治医师</strong>
-                                <cite class="online">在线</cite>
-                                <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="img/1.jpg"></a>
-                                <strong><a href="http://my.39.net/lly0806">刘三勇</a>主治医师</strong>
-                                <cite class="online">在线</cite>
-                                <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="img/1.jpg"></a>
-                                <strong><a href="http://my.39.net/lly0806">刘三勇</a>主治医师</strong>
-                                <cite class="online">在线</cite>
-                                <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = 'http://ask.360kad.com/question/add/1.html'"></span>
-                            </li>
-                        </ol>
-                    </div>
-
+                    <!--{/loop}-->
                 </div>
             </div>
 
@@ -257,8 +200,11 @@
                         <ul class="WTlist">
                             <!--{loop $ncategory['questionlist'] $reward}-->
                             <li><span>{$reward['format_time']}</span>
+                                <!--{if $reward['price'] > 0}-->
+                                <b>{$reward['price']}</b>
+                                <!--{/if}-->
                                 <a  href="{url category/view/$reward['cid']}" class="tit">[{eval echo cutstr($reward['category_name'],10,'');}]</a>
-                                <a target="_blank" href="{url question/view/$reward['id']}" title="{$reward['title']}">{eval echo cutstr($reward['title'],40);}</a>
+                                <a target="_blank" href="{url question/view/$reward['id']}" title="{$reward['title']}">{eval echo cutstr($reward['title'],32);}</a>
                             </li>
                             <!--{/loop}-->
                         </ul>

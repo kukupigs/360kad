@@ -38,7 +38,7 @@
                     <span>年龄:{if $question['age']}{$question['age']}{else}1岁以下{/if}</span>
                     <span class="span-line">|</span><span>{$question['format_time']}</span>
                 </div>
-                <div class="timeright"><span><a href="{url favorite/add/$question['id']}">收藏</a></span></div>                    
+                <div class="timeright"><span><a href="{url favorite/add/$question['id']}">收藏</a></span></div>                       
             </div>
             <div class="LnAsk">
                 <div class="LnAsk-m">病情描述（发病时间、主要症状、症状变化等）</div>
@@ -54,7 +54,7 @@
                     <!--{/loop}-->
                 </p>
                 <!--{/if}-->
-            </div>             
+            </div>           
             <div class="mainbox mt10">
                 <ul>
                     <!--{loop $supplylist $supply}-->
@@ -261,7 +261,6 @@
                 <!--精彩推荐-->
                 <!--{if $curcategory['ad3']}-->
                 {$curcategory['ad3']}
-                <!--{/if}-->
                 <!--{/if}-->
                 <!--{eval $topiclist=$this->fromcache('topiclist');}-->
                 <!--{if $topiclist}-->
