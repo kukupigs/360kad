@@ -3,7 +3,7 @@
             <div class="userbox clearfix">
                 <a class="pic" title="{$member['username']}" href="{url user/profile}"><img width="60" height="60" src="{$member['avatar']}" alt="{$member['username']}"></a>
                 <h3>{$member['username']}</h3>
-            <span>{if $member['expert']}{$member['introduction']}{else}{$member['grouptitle']}{/if}</span>
+            <span>{if $member['expert']}{$member['msn']}{else}{$member['grouptitle']}{/if}</span>
             </div>
             <ul class="menu clearfix">
                 <li><a href="{url user/space_ask/$member['uid']}">提问数</a>{$member['questions']}</li>

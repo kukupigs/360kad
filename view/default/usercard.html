@@ -5,10 +5,8 @@
     <div class="usercard_c1 clearfix">
         <div class="usercard_c1_l"><a href="{url user/space/$userinfo['uid']}" class="avatar"><img src="{$userinfo['avatar']}" alt="{$userinfo['username']}"/></a></div>
         <div class="usercard_c1_r">
-            <h2 class="tit"><a class="tx_user" href="{url user/space/$userinfo['uid']}" title="{$userinfo['username']}">{eval echo cutstr($userinfo['username'],24,'');}</a>{if $userinfo['gender']!=2}<i class="icon_{$userinfo['gender']}"></i>{/if}{if $userinfo['expert']}<i class="icon_expert" title='专家'></i>{/if} <span class="tx_id">({if $userinfo['expert']}{$userinfo['introduction']}{else}{$userinfo_group['grouptitle']}{/if})</span></h2>
-            <!--{if $userinfo['introduction'] && !$userinfo['expert']}-->
-            <p class="info">{$userinfo['introduction']}</p>
-            <!--{/if}-->
+            <h2 class="tit"><a class="tx_user" href="{url user/space/$userinfo['uid']}" title="{$userinfo['username']}">{eval echo cutstr($userinfo['username'],24,'');}</a>{if $userinfo['gender']!=2}<i class="icon_{$userinfo['gender']}"></i>{/if}{if $userinfo['expert']}<i class="icon_expert" title='专家'></i>{/if} <span class="tx_id">{if $userinfo['expert']}{$userinfo['msn']}{else}{$userinfo_group['grouptitle']}{/if}</span></h2>
+
             <!--{if $userinfo['category']}-->
             <p class="info">擅长:
                 <!--{loop $userinfo['category'] $category}-->

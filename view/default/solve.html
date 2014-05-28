@@ -273,7 +273,7 @@
                     </div>
                     <ul class="list">
                         <!--{loop $topic['questionlist'] $tquestion}-->
-                        <li><a title="{$tquestion['title']}" target="_blank" href="{url question/view/$tquestion['qid']}">{eval echo cutstr($tquestion['title'],30,'');}</a></li>
+                        <li><a title="{$tquestion['title']}" target="_blank" href="{url question/view/$tquestion['id']}">{eval echo cutstr($tquestion['title'],30,'');}</a></li>
                         <!--{/loop}-->
                     </ul>
                 </div>

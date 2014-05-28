@@ -3,7 +3,7 @@
         <div class="userbox clearfix">
             <a class="pic" title="{$user['username']}" href="{url user/profile}"><img width="60" height="60" src="{$user['avatar']}" alt="{$user['username']}"></a>
             <h3>{$user['username']}</h3>
-            <span>{if $user['expert']}{$user['introduction']}{else}{$user['grouptitle']}{/if}</span>
+            <span>{if $user['expert']}{$user['msn']}{else}{$user['grouptitle']}{/if}</span>
 <!--            <span class="user-level">LV{$user['level']}</span>-->
         </div>
         <ul class="menu clearfix">
