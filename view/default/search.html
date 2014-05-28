@@ -28,7 +28,7 @@
                             <h3><a href="{url question/view/$question['id']}" target="_blank">{$question['title']}</a><!--{if in_array($question['status'],array(2,6))}--><img title="已解决" src="{SITE_URL}css/default/solved.gif" /><!--{/if}--></h3>
                         </div>
                         <div class="qa-i-bd">{eval echo cutstr($question['description'],250,'...');}</div>
-                        <div class="qa-i-ft"><span class="cate"><a href="{url category/view/$question['cid']}" target="_blank" text="qaresult-cate">{$question['category_name']}</a></span> - 提问人:<a href="{url user/space/$question['authorid']}">{$question['author']}</a> - {$question['answers']}个回答 - 提问时间: {$question['format_time']}</div>
+                        <div class="qa-i-ft"><span class="cate"><a href="{url category/view/$question['cid']}" target="_blank" text="qaresult-cate">{$question['category_name']}</a></span> - 提问人:{if $question['hidden']}<span>匿名</span>{else}<a href="{url user/space/$question['authorid']}">{$question['author']}</a>{/if} - {$question['answers']}个回答 - 提问时间: {$question['format_time']}</div>
                     </li>
                     <!--{/loop}-->
                 </ul>
