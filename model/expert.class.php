@@ -35,7 +35,8 @@ class expertmodel {
 
     function get_by_cid($cid, $start = 0, $limit = 10) {
         $expertlist = array();
-        $query = ($cid == 'all') ? $this->db->query("SELECT * FROM " . DB_TABLEPRE . "user WHERE uid IN (SELECT uid FROM " . DB_TABLEPRE . "user_category) ORDER BY answers DESC LIMIT $start,$limit") : $this->db->query("SELECT * FROM " . DB_TABLEPRE . "user WHERE uid IN (SELECT uid FROM " . DB_TABLEPRE . "user_category WHERE cid=$cid) ORDER BY answers DESC  LIMIT $start,$limit");
+        $onlinetime = $this->base->time - intval($this->base->setting['sum_onlineuser_time']) * 60;
+        $query = ($cid == 'all') ? $this->db->query("SELECT * FROM " . DB_TABLEPRE . "user WHERE uid IN (SELECT uid FROM " . DB_TABLEPRE . "user_category) AND uid IN (SELECT uid FROM " . DB_TABLEPRE . "session WHERE  time>$onlinetime)  ORDER BY answers DESC LIMIT $start,$limit") : $this->db->query("SELECT * FROM " . DB_TABLEPRE . "user WHERE uid IN (SELECT uid FROM " . DB_TABLEPRE . "user_category WHERE cid=$cid) AND uid IN (SELECT uid FROM " . DB_TABLEPRE . "session WHERE  time>$onlinetime)  ORDER BY answers DESC  LIMIT $start,$limit");
         while ($expert = $this->db->fetch_array($query)) {
             $expert['avatar'] = get_avatar_dir($expert['uid']);
             $expertlist[] = $expert;
@@ -88,8 +89,8 @@ class expertmodel {
     function list_by_category($pagesize = 4) {
         $indexexpertlist = array();
         foreach ($this->base->category as $key => $category) {
-            if ($category['pid'] == 0) {                
-                $category['expertlist'] = $this->get_by_cid($category['id'],0,$pagesize);
+            if ($category['pid'] == 0) {
+                $category['expertlist'] = $this->get_by_cid($category['id'], 0, $pagesize);
                 $indexexpertlist[] = $category;
             }
         }

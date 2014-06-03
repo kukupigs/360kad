@@ -11,9 +11,8 @@
 <div class="wrapper clearfix">
     <div class="content-left">
         <div class="questionbox">
-            <div class="title pd40">
-                <span class="ico ico-closed"></span>
-                <h1>{$question['title']}</h1>
+            <div class="title pd80">
+                <h1><span class="Lico-Whui">已关闭</span>{$question['title']}</h1>
             </div>
             <div class="tags">
                 <!--{loop $taglist $tag}-->
@@ -37,12 +36,12 @@
                     <span>性别:{if $question['gender']==1}男{elseif $question['gender']==0}女{else}未知{/if}</span>
                     <span class="span-line">|</span>
                     <span>年龄:{if $question['age']}{$question['age']}{else}1岁以下{/if}</span>
-                    <span class="span-line">|</span><span>{if $question['istreat']}曾今接受过治疗或检查{else}未接受治疗和检查{/if}</span>
-                    <span class="span-line">|</span><span>浏览{$question['views']}次</span>
+                    <span class="span-line">|</span><span>{$question['format_time']}</span>
                 </div>
-                <div class="timeright"><span><a href="#">检举</a></span><span class="span-line">|</span><span><a href="{url favorite/add/$question['id']}">收藏</a></span><span class="span-line">|</span>{$question['format_time']}</div>                    
+                <div class="timeright"><span><a href="{url favorite/add/$question['id']}">收藏</a></span></div>                       
             </div>
-            <div class="description clearfix">
+            <div class="LnAsk">
+                <div class="LnAsk-m">病情描述（发病时间、主要症状、症状变化等）</div>
                 {$question['description']}
                 <!--{if $question['istreat'] && $question['treatdesc']}-->
                 <p>曾今检查/治疗结果:<br />{$question['treatdesc']}</p>
@@ -55,7 +54,8 @@
                     <!--{/loop}-->
                 </p>
                 <!--{/if}-->
-            </div>             <div class="mainbox mt10">
+            </div>
+            <div class="mainbox mt10">
                 <ul>
                     <!--{loop $supplylist $supply}-->
                     <li><span class="time">问题补充 : {$supply['format_time']}</span>{$supply['content']}</li>
@@ -69,9 +69,6 @@
         </div>
         <div class="share-content">{$setting['question_share']}</div>
         <!--广告位2-->
-        <!--{if (isset($adlist['question_view']['left1']) && trim($adlist['question_view']['left1']))}-->
-        <div class="share-content">{$adlist['question_view']['left1']}</div>
-        <!--{/if}-->
         <div id="customerList" class="net-answer mt10">
             <div class="title">全部回答({$question['answers']})</div>
             <ul class="net-answer-list">
@@ -134,6 +131,11 @@
             </ul>
         </div>
         <!--{/if}-->
+        <!--广告位3-->
+        <!--{if (isset($adlist['question_view']['left2']) && trim($adlist['question_view']['left2']))}-->
+        <div class="h10"></div>
+        <div>{$adlist['question_view']['left2']}</div>
+        <!--{/if}-->
         <!--{if $nosolvelist}-->
         <div class="module mt10">
             <div class="title">等你来帮忙</div>
@@ -150,14 +152,12 @@
             {$curcategory['ad1']}
         </div>
         <!--{/if}-->
-        <!--{if $curcategory['ad2']}-->
-        <div class="module mt10">
-            {$curcategory['ad2']}
-        </div>
-        <!--{/if}-->
     </div>
 
     <div class="aside-right">
+        <!--{if $curcategory['ad2']}-->
+        {$curcategory['ad2']}
+        <!--{/if}-->
         <!--{if 1==$user['grouptype'] && $user['uid']}-->
         <div class="modbox mb10">
             <div class="userinfo-box">
@@ -167,7 +167,7 @@
                         <span><input type="button" class="button_4" value="编辑内容" onclick="javascript:document.location = '{url question/edit/$question[id]}'"/></span>
                         <span><input type="button" class="button_4" value="修改标签" onclick="edittag();" /></span>
                         <span><input type="button" class="button_4" value="移动分类" id="changecategory" /></span>
-                        <span><input type="button" class="button_4" value="设为待解决" id="changetonosolve"/></span>
+                        <span><input type="button" class="button_4" value="关闭问题" id="close_question"/></span>
                         <span><input type="button" class="button_4" value="删除问题" id="delete_question"/></span>
                     </p>
 
@@ -175,27 +175,27 @@
             </div>
         </div>
         <!--{/if}-->
-        <!--{if $expertlist}-->
-        <div class="modbox mt10">
-            <div class="title">可能帮助到你的专家</div>
-            <ul class="left-expert-list">
-                <!--{loop $expertlist $expert}-->
-                <li>
-                    <div class="pic"><a title="{$expert['name']}" target="_blank" href="{url user/space/$expert['uid']}"><img width="50" height="50" alt="{$expert['username']}" src="{$expert['avatar']}"  onmouseover="pop_user_on(this, '{$expert[uid]}', '');"  onmouseout="pop_user_out();"/></a></div>
-                    <h3><a title="{$expert['name']}" target="_blank" href="{url user/space/$expert['uid']}" onmouseover="pop_user_on(this, '{$expert[uid]}', 'text');"  onmouseout="pop_user_out();">{$expert['username']}</a></h3>
-                    <span>{$expert['answers']}回答</span>
-                    <span>{$expert['supports']}赞同</span>
-                    <p><a href="{url question/add/$expert['uid']}" class="invite">邀请TA回答</a></p>
-                </li>
-                <!--{/loop}-->
-            </ul>
-        </div>
+                <!--{if $expertlist}-->
+                <div class="modbox mb10">
+                    <div class="title">咨询在线医生</div>
+                    <div class="tab_box">
+                        <ol>
+                            <!--{loop $expertlist $expert}-->
+                            <li>
+                                <a href="{url user/space/$expert['uid']}" target="_blank"><img alt="{$expert['username']}" src="{$expert['avatar']}"></a>
+                                <strong><a href="{url user/space/$expert['uid']}" target="_blank">{$expert['username']}</a>主治医师</strong>
+                                <cite class="online">在线</cite>
+                                <span><input type="button" value="向TA求助" class="button_4" onClick="javascript:document.location = '{url question/add/$expert['uid']}'"></span>
+                            </li>
+                            <!--{/loop}-->
+                        </ol>
+                    </div>
+                </div>
+                <!--{/if}-->
+        <!--广告位2-->
+        <!--{if (isset($adlist['question_view']['left1']) && trim($adlist['question_view']['left1']))}-->
+        {$adlist['question_view']['left1']}
         <!--{/if}-->
-        <!--广告位5-->
-        <!--{if (isset($adlist['question_view']['right1']) && trim($adlist['question_view']['right1']))}-->
-        <div>{$adlist['question_view']['right1']}</div>
-        <!--{/if}-->
-        
         <!--{eval $topiclist=$this->fromcache('topiclist');}-->
         <!--{if $topiclist}-->
         <!--{eval $topic = $topiclist[0];}-->
@@ -204,28 +204,32 @@
             <!--<div style="margin-left: 10px;"><img width="230" height="170" src="{SITE_URL}{$topic['image']}"/></div>-->
             <ul class="list">
                 <!--{loop $topic['questionlist'] $tquestion}-->
-                <li><a title="{$tquestion['title']}" target="_blank" href="{url question/view/$tquestion['qid']}">{eval echo cutstr($tquestion['title'],30,'');}</a></li>
+                <li><a title="{$tquestion['title']}" target="_blank" href="{url question/view/$tquestion['id']}">{eval echo cutstr($tquestion['title'],30,'');}</a></li>
                 <!--{/loop}-->
             </ul>
         </div>
         <!--{/if}-->
-           <!-- 关注问题排行榜 -->
-            <div class="modbox mt10">
-                <div class="title">一周热点问题</div>
-                <ul class="right-list">
-                    <!--{loop $attentionlist $index $attention}-->
-                    <!--{eval $index++;}-->
-                    <li>
-                        <!--{if $index<4}-->
-                        <em class="n1">{$index}</em>
-                        <!--{else}-->
-                        <em class="n2">{$index}</em>
-                        <!--{/if}-->
-                        <a  title="{$attention['title']}" target="_blank" href="{url question/view/$attention['id']}">{eval echo cutstr($attention['title'],40,'');}</a>
-                    </li>
-                    <!--{/loop}-->
-                </ul>
-            </div>
+        <!--精彩推荐-->
+        <!--{if $curcategory['ad3']}-->
+        {$curcategory['ad3']}
+        <!--{/if}-->
+        <!-- 关注问题排行榜 -->
+        <div class="modbox mt10">
+            <div class="title">一周热点问题</div>
+            <ul class="right-list">
+                <!--{loop $attentionlist $index $attention}-->
+                <!--{eval $index++;}-->
+                <li>
+                    <!--{if $index<4}-->
+                    <em class="n1">{$index}</em>
+                    <!--{else}-->
+                    <em class="n2">{$index}</em>
+                    <!--{/if}-->
+                    <a  title="{$attention['title']}" target="_blank" href="{url question/view/$attention['id']}">{eval echo cutstr($attention['title'],40,'');}</a>
+                </li>
+                <!--{/loop}-->
+            </ul>
+        </div>
     </div>
 </div>
 <div id="catedialog" title="修改分类" style="display: none">
@@ -365,7 +369,7 @@
                         document.location.href = "{url question/delete/$question['id']}";
                         }
                         });
-                                $(".anscontent img,.description img,.mainbox img,.qa-content img").each(function(i) {
+                                $(".anscontent img,.LnAsk img,.mainbox img,.qa-content img").each(function(i) {
                         var img = $(this);
                                 $.ajax({
                                 type: "POST",

@@ -21,8 +21,8 @@
                         <a id="changecategory" href="javascript:void(0)">选择分类</a>
                     </p>
                 </div>
-                <div class="Ltitle">您是否曾经检查或治疗过？<a href="#" class="icheck ichecked">是</a><a href="#" class="icheck">否</a></div>
-                <div class="Lindes clearfix">
+                <div class="Ltitle">您是否曾经检查或治疗过？<a href="#" class="icheck ">是</a><a href="#" class="icheck ichecked">否</a></div>
+                <div class="Lindes clearfix" style="display: none">
                     <textarea class="tera" name="treatdesc" id="treatdesc" >描述您检查或治疗的情况，方便医生分析问题</textarea>
                     <div class="h10"></div>
                     <div class="Lupload-btn">
@@ -191,9 +191,12 @@
 
                     function  check_form() {
                         var qtitle = $("#qtitle").val();
-                        if (bytes($.trim(qtitle)) < 8 || bytes($.trim(qtitle)) > 100) {
-                            alert("问题标题长度不得少于4个字，不能超过50字！");
-                            $("#qtitle").focus();
+                        if (qtitle.length < 10) {
+                            alert('标题不少于10个字')
+                            return false;
+                        }
+                        else if ($('#description').val().length < 20) {
+                            alert('描述不少于20个字')
                             return false;
                         }
                         if ($("#selectedcate").html() == '') {
@@ -252,19 +255,7 @@
                 $(this).val(this.defaultValue);
             }
         })
-        /*表单验证*/
-        $('#Laskbtn').click(function() {
-            if ($('#Lasktxt1').val().length < 10) {
-                alert('标题不少于10个字')
-                return false;
-            }
-            else if ($('#Lasktera1').val().length < 20) {
-                alert('描述不少于20个字')
-                return false;
-            }
 
-
-        })
     })
 
 </script>
