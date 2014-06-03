@@ -98,6 +98,9 @@
         <div class="modbox">
             <div class="title">一周热点问题</div>
             <ul class="right-list">
+                <!--{if $cid=='all'}-->
+                <!--{eval $attentionlist=$this->fromcache('attentionlist');}-->
+                <!--{/if}-->
                 <!--{loop $attentionlist $index $question}-->
                 <!--{eval $index++;}-->
                 <li>

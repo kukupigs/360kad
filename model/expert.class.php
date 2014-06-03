@@ -69,7 +69,7 @@ class expertmodel {
 
     function get_solves($start = 0, $limit = 20) {
         $solvelist = array();
-        $query = $this->db->query("SELECT a.qid,a.title FROM " . DB_TABLEPRE . "answer  as a ,`" . DB_TABLEPRE . "expert` as f WHERE a.authorid=f.uid ORDER BY a.time DESC LIMIT $start ,$limit");
+        $query = $this->db->query("SELECT a.qid,a.title FROM " . DB_TABLEPRE . "answer  as a ,`" . DB_TABLEPRE . "user` as f WHERE a.authorid=f.uid ORDER BY a.time DESC LIMIT $start ,$limit");
         while ($solve = $this->db->fetch_array($query)) {
             $solvelist[] = $solve;
         }

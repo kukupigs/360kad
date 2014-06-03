@@ -92,7 +92,7 @@ class questionmodel {
         $timestart = $this->base->time - 7 * 24 * 3600;
         $timeend = $this->base->time;
         $sql = "SELECT * FROM " . DB_TABLEPRE . "question WHERE `time`>$timestart AND `time`<$timeend ";
-        $cid && $sql .= " AND cid=$cid ";
+        $cid && $sql .= " AND (cid=$cid OR cid1=$cid OR cid2=$cid)";
         $sql .= " ORDER BY answers DESC,views DESC, `time` DESC LIMIT $start,$limit";
         $query = $this->db->query($sql);
         while ($question = $this->db->fetch_array($query)) {
@@ -189,7 +189,6 @@ class questionmodel {
     }
 
     /* 问题列表，根据指定的分类名称，和分类id，以及status来查询 */
-
     function list_by_cfield_cvalue_status($cfield = 'cid1', $cvalue = 0, $status = 0, $start = 0, $limit = 10) {
         $questionlist = array();
         $sql = "SELECT * FROM " . DB_TABLEPRE . "question WHERE 1=1 ";
