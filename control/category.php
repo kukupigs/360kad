@@ -5,12 +5,13 @@
 class categorycontrol extends base {
 
     var $wtzttable = array(
-        'all'=>'全部问题',
-        '6'=>'推荐问题',
-        '4'=>'悬赏问题',
-        '1'=>'待解决',
-        '2'=>'已解决'
+        'all' => '全部问题',
+        '6' => '推荐问题',
+        '4' => '悬赏问题',
+        '1' => '待解决',
+        '2' => '已解决'
     );
+
     function categorycontrol(& $get, & $post) {
         $this->base($get, $post);
         $this->load('category');
@@ -20,7 +21,7 @@ class categorycontrol extends base {
     //category/view/1/2/10
     //cid，status,第几页？
     function onview() {
-        $this->load("expert");        
+        $this->load("expert");
         $cid = $this->get[2];
         $status = isset($this->get[3]) ? $this->get[3] : 'all';
         @$page = max(1, intval($this->get[4]));
@@ -32,7 +33,7 @@ class categorycontrol extends base {
             $cfield = 'cid' . $category['grade'];
         } else {
             $category = $this->category;
-            $navtitle = '';
+            $navtitle = '全部分类';
             $cfield = '';
             $category['pid'] = 0;
         }
