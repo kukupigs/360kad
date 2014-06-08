@@ -12,6 +12,7 @@ class expertcontrol extends base {
     /* 添加举报 */
 
     function ondefault() {
+        $navtitle = "问题专家";
         $page = max(1, intval($this->get[2]));
         $pagesize = $this->setting['list_default'];
         $startindex = ($page - 1) * $pagesize;

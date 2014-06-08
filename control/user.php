@@ -422,6 +422,7 @@ class usercontrol extends base {
     }
 
     function onactivelist() {
+        $navtitle = "活跃用户";
         $page = max(1, intval($this->get[2]));
         $pagesize = $this->setting['list_default'];
         $startindex = ($page - 1) * $pagesize;

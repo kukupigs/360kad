@@ -23,7 +23,7 @@
                 </div>
                 <div class="Ltitle">您是否曾经检查或治疗过？<a href="#" class="icheck ">是</a><a href="#" class="icheck ichecked">否</a></div>
                 <div class="Lindes clearfix" style="display: none">
-                    <textarea class="tera" name="treatdesc" id="treatdesc" >描述您检查或治疗的情况，方便医生分析问题</textarea>
+                    <textarea class="tera" name="treatdesc" id="treatdesc" placeholder="描述您检查或治疗的情况，方便医生分析问题"></textarea>
                     <div class="h10"></div>
                     <div class="Lupload-btn">
                         <input id="file_upload" name="file_upload" type="file"/>
@@ -197,6 +197,9 @@
                         }
                         else if ($('#description').val().length < 20) {
                             alert('描述不少于20个字')
+                            return false;
+                        }else if($("a[class='icheck ichecked']").html()!='否' && $("#treatdesc").val()==''){
+                            alert('“您是否曾今检查或者治疗过？”不能为空');
                             return false;
                         }
                         if ($("#selectedcate").html() == '') {
