@@ -181,6 +181,11 @@ class admin_settingcontrol extends base {
                 $message = '没有选择缓存类型！';
                 $type = 'errormsg';
             }
+            $this->load("category");
+            $categoryjs = $_ENV['category']->get_js();
+            $categoryjsstring =  "var category1 = {$categoryjs[category1]};var category2 = {$categoryjs[category2]};var category3 = {$categoryjs[category3]};";
+            file_put_contents(TIPASK_ROOT."/data/cache/category.js",$categoryjsstring);
+            
         }
         include template('setting_cache', 'admin');
     }

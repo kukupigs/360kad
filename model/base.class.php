@@ -25,7 +25,6 @@ class base {
         $this->post = & $post;
         $this->init_db();
         $this->init_cache();
-        //$this->init_crontab();
         $this->init_user();
         $this->checkcode();
         $this->banned();

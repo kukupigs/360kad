@@ -31,4 +31,14 @@
         <!--{/if}-->
     </div>
 </div>
+<script type="text/javascript">
+    function check_form() {
+        var content = UE.getEditor('editor').getContentTxt();
+        if (bytes(content) <= 5) {
+            alert('补充内容不能少于5个字！');
+            return false;
+        }
+        return true;
+    }
+</script>
 <!--{template footer}-->

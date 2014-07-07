@@ -85,7 +85,7 @@
         <!--{if !$already && $user['uid']!= $question['authorid']}-->
         <div id="replyArea" class="your-answer-mod clearfix">
             <div class="title">我来回答</div>
-            <form name="answerForm" action="{url question/answer}" method="post">
+            <form name="answerForm" action="{url question/answer}" method="post"  onsubmit="return check_form();">
                 <input type="hidden" value="{$question['id']}" name="qid">
                 <input type="hidden" value="{$question['title']}" name="title">
                 <div class="your-answer">
@@ -406,13 +406,11 @@
 <link rel="stylesheet" href="{SITE_URL}js/editor/third-party/SyntaxHighlighter/shCoreDefault.css"/>
 <script type="text/javascript" src="{SITE_URL}js/lightbox/lightbox.js"></script>
 <script type="text/javascript" src="{SITE_URL}js/editor/third-party/SyntaxHighlighter/shCore.js"></script>
+<script type="text/javascript" src="{SITE_URL}data/cache/category.js"></script>
 <script type="text/javascript">
-                                var category1 = {$categoryjs[category1]};
-                                var category2 = {$categoryjs[category2]};
-                                var category3 = {$categoryjs[category3]};
                                 var selectedcid = "{$question['cid1']},{$question['cid2']},{$question['cid2']}";
                                 $(document).ready(function() {
-                        initcategory(category1);
+                                initcategory(category1);
                                 fillcategory(category2, $("#category1 option:selected").val(), "category2");
                                 fillcategory(category3, $("#category2 option:selected").val(), "category3");
                                 //关闭问题
@@ -624,6 +622,13 @@
                                 $("#append_score").dialog("open");
                         }
 
-
+    function check_form() {
+        var content = UE.getEditor('anscontent').getContentTxt();
+        if (bytes(content) <= 1) {
+            alert('回答内容不能为空！');
+            return false;
+        }
+        return true;
+    }
 </script>
 <!--{template footer}-->
